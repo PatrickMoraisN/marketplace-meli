@@ -1,6 +1,8 @@
+@import '../shared/styles/_variables.scss';
+
 .page__text {
   margin: 20px;
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
+  color: $color-brand-primary;
 }

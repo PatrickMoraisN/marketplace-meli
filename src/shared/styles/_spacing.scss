@@ -1,0 +1,33 @@
+// Spacing Scale
+$space-xxs: 4px;
+$space-xs: 6px;
+$space-sm: 8px;
+$space-md: 10px;
+$space-lg: 12px;
+$space-xl: 16px;
+$space-2xl: 20px;
+$space-3xl: 25px;
+$space-4xl: 28px;
+$space-5xl: 30px;
+
+// Layout container widths
+$container-max: 1200px;
+$container-content: 1018px;
+
+@function space($key) {
+  @return map-get(
+    (
+      xxs: $space-xxs,
+      xs: $space-xs,
+      sm: $space-sm,
+      md: $space-md,
+      lg: $space-lg,
+      xl: $space-xl,
+      2xl: $space-2xl,
+      3xl: $space-3xl,
+      4xl: $space-4xl,
+      5xl: $space-5xl,
+    ),
+    $key
+  );
+}

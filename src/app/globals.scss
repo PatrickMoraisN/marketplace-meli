@@ -1,0 +1,151 @@
+// @use '../shared/styles/tokens.scss' as *;
+@import '../shared/styles/variables.scss';
+@import '../shared/styles/typography.scss';
+@import '../shared/styles/spacing.scss';
+
+/* -------------------------------------------------- */
+/* BASE                                        */
+/* -------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  color: $color-text-primary;
+  background-color: $color-bg-page;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------------------------------------------------- */
+/* LINKS / BUTTONS                                    */
+/* -------------------------------------------------- */
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: darken($color-link, 10%);
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+/* -------------------------------------------------- */
+/* HEADINGS                                           */
+/* -------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-text-primary;
+  font-weight: $font-weight-regular;
+  line-height: 1.2;
+  margin-bottom: space(md);
+}
+
+h1 {
+  font-size: $font-size-5xl;
+}
+h2 {
+  font-size: $font-size-4xl;
+}
+h3 {
+  font-size: $font-size-3xl;
+}
+h4 {
+  font-size: $font-size-2xl;
+}
+h5 {
+  font-size: $font-size-xl;
+}
+h6 {
+  font-size: $font-size-lg;
+}
+
+p {
+  font-size: $font-size-md;
+  line-height: $line-height-md;
+  color: $color-text-secondary;
+  margin-bottom: space(md);
+}
+
+/* -------------------------------------------------- */
+/* LAYOUT                                              */
+/* -------------------------------------------------- */
+
+.container {
+  max-width: $container-content;
+  margin: 0 auto;
+  padding: 0 space(xl);
+}
+
+.main {
+  padding: space(2xl) 0;
+}
+
+/* -------------------------------------------------- */
+/* HEADER / FOOTER                                     */
+/* -------------------------------------------------- */
+
+header {
+  background-color: $color-brand-primary;
+  padding: space(md) 0;
+
+  .logo {
+    max-height: 36px;
+  }
+}
+
+footer {
+  background-color: $color-bg-white;
+  border-top: 1px solid $color-bg-page;
+  padding: space(lg) 0;
+  text-align: center;
+  color: $color-text-tertiary;
+  font-size: $font-size-sm;
+}
+
+/* -------------------------------------------------- */
+/* UTILITY                                            */
+/* -------------------------------------------------- */
+
+.text-center {
+  text-align: center;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+.text-muted {
+  color: $color-text-tertiary;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
