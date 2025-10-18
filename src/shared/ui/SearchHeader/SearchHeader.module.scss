@@ -1,0 +1,44 @@
+@use '@/shared/styles/tokens' as *;
+
+.searchHeader {
+  width: 100%;
+  background-color: $color-brand-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  box-shadow: 0 1px 2px $color-shadow;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $container-max;
+  gap: $space-7xl;
+  padding: 0 $space-lg;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.searchWrapper {
+  flex: 1;
+  margin-left: $space-lg;
+
+  input {
+    width: 100%;
+    height: 36px;
+    border: none;
+    outline: none;
+    padding: 0 $space-md;
+  }
+}
