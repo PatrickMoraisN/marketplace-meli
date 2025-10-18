@@ -1,0 +1,47 @@
+@use '@/shared/styles/tokens' as *;
+
+.searchBar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  & > input {
+    flex: 1;
+    padding-right: 36px;
+    height: 34px;
+  }
+}
+
+.iconButton {
+  position: absolute;
+  right: $space-sm;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover img {
+    opacity: 1;
+  }
+}
