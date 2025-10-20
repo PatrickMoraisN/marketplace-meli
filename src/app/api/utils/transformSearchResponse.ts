@@ -1,10 +1,6 @@
-import { SearchResponseDTO } from '@/app/api/types/dto'
+import { SearchDataDTO } from '@/app/api/types/dto'
 
-export function transformSearchResponse(
-  results: any[],
-  query: string,
-  offset = 0
-): SearchResponseDTO {
+export function transformSearchResponse(results: any[], query: string, offset = 0): SearchDataDTO {
   const filtered = results.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
 
   return {
