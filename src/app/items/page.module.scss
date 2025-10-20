@@ -1,0 +1,38 @@
+@use '@/shared/styles/tokens' as *;
+
+.itemsPage {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $color-bg-light;
+  padding: 2rem 0 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $color-text-tertiary;
+  margin-bottom: 2rem;
+
+  span {
+    color: $color-link;
+    font-weight: 600;
+  }
+}
+
+.resultsPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  border-radius: 12px;
+  background-color: $color-white;
+  box-shadow: 0 1px 4px $color-shadow;
+  color: $color-text-tertiary-light;
+  font-size: 1rem;
+}
