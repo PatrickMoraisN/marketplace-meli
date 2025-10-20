@@ -1,4 +1,2 @@
-import { SearchHeader } from './SearchHeader/SearchHeader'
-import { TextInput } from './TextInput/TextInput'
-
-export { SearchHeader, TextInput }
+export * from './SearchHeader/SearchHeader'
+export * from './TextInput/TextInput'
