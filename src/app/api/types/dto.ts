@@ -13,7 +13,11 @@ export interface ItemDTO {
   installments: string
 }
 
-export interface SearchResponseDTO {
+export interface SearchDataDTO {
   categories: string[]
   items: ItemDTO[]
+}
+
+export interface SearchResponseDTO {
+  data: SearchDataDTO
 }
