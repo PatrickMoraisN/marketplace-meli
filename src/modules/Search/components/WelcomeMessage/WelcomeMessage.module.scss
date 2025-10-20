@@ -1,0 +1,57 @@
+@use '@/shared/styles/tokens' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: $color-overlay;
+  z-index: 100;
+}
+
+.message {
+  position: absolute;
+  z-index: 101;
+}
+
+.arrow {
+  position: absolute;
+  top: -6px;
+  right: 24px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid $color-link;
+}
+
+.content {
+  background: $color-link;
+  color: $color-white;
+  padding: $space-md;
+  border-radius: 6px;
+  width: 260px;
+  box-shadow: 0 2px 6px $color-shadow;
+  font-size: $font-size-sm;
+  position: relative;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: $space-xs;
+    background-color: $color-link;
+
+    button {
+      background: none;
+      border: none;
+      color: $color-white;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
+  }
+
+  p {
+    color: $color-white;
+  }
+}
