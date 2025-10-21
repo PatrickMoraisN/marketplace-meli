@@ -18,7 +18,3 @@ export interface HttpResponse<T = any> {
   statusText: string
   headers: Record<string, string>
 }
-
-export interface HttpAdapter {
-  request<T = any>(config: RequestConfig): Promise<HttpResponse<T>>
-}
