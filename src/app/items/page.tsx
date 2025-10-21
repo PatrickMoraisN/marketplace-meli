@@ -1,7 +1,9 @@
 'use client'
 
 import { useSearchItems } from '@/modules/Search/hooks/useSearchItems'
+import { PAGINATION_CONFIG } from '@/shared/config'
 import { SearchHeader } from '@/shared/ui'
+import { Pagination } from '@/shared/ui/Pagination/Pagination'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 import styles from './page.module.scss'
@@ -19,6 +21,9 @@ export default function ItemsPage() {
   }, [searchParams])
 
   const { data, isLoading, isError } = useSearchItems(searchTerm, page)
+  const totalItems = Number(data?.data.total_items)
+  const totalPages = Math.ceil(totalItems / PAGINATION_CONFIG.searchItems.itemsPerPage)
+
   const products = data?.data.items
 
   return (
@@ -65,6 +70,8 @@ export default function ItemsPage() {
             </>
           )}
         </div>
+
+        <Pagination totalPages={totalPages} basePath="/items" />
       </main>
     </>
   )
