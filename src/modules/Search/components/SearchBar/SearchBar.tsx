@@ -1,10 +1,9 @@
 'use client'
 
-import { LOCAL_STORAGE_KEYS } from '@/shared/constants'
-import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
+import { useSearchHistory } from '@/modules/Search/hooks/useSearchHistory'
 import { TextInput } from '@/shared/ui'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SearchHistory } from '../SearchHistory/SearchHistory'
 import { WelcomeMessage } from '../WelcomeMessage/WelcomeMessage'
 import styles from './SearchBar.module.scss'
@@ -15,31 +14,15 @@ interface SearchBarProps {
   defaultValue?: string
 }
 
-interface SearchRecord {
-  term: string
-  timestamp: number
-}
-
 export const SearchBar = ({ onSearch, placeholder, defaultValue = '' }: SearchBarProps) => {
   const [value, setValue] = useState(defaultValue)
   const [showHistory, setShowHistory] = useState(false)
-  const [history, setHistory] = useLocalStorage<SearchRecord[]>(
-    LOCAL_STORAGE_KEYS.LAST_SEARCHED_ITEMS,
-    []
-  )
-
-  useEffect(() => {
-    setValue(defaultValue)
-  }, [defaultValue])
+  const { history, addSearch } = useSearchHistory(2)
 
   const handleSubmit = () => {
     if (!value.trim()) return
-
-    const newRecord: SearchRecord = { term: value.trim(), timestamp: Date.now() }
-    const updatedHistory = [newRecord, ...history.filter((h) => h.term !== value)].slice(0, 5)
-    setHistory(updatedHistory)
-
-    if (onSearch) onSearch(value)
+    addSearch(value)
+    onSearch?.(value)
     setShowHistory(false)
   }
 
