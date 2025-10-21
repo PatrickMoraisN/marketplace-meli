@@ -6,9 +6,9 @@ const http = HttpClientFactory.createAxiosClient({
 })
 
 export const searchService = {
-  async getItems(query: string): Promise<SearchResponseDTO> {
+  async getItems(query: string, offset = 0): Promise<SearchResponseDTO> {
     const response = await http.request<SearchResponseDTO>({
-      url: `/items?q=${encodeURIComponent(query)}`,
+      url: `/items?q=${encodeURIComponent(query)}&offset=${offset}`,
       method: 'GET',
     })
     const items = response.data

@@ -13,7 +13,12 @@ export default function ItemsPage() {
     return decodeURIComponent(param)
   }, [searchParams])
 
-  const { data, isLoading, isError } = useSearchItems(searchTerm)
+  const offset = useMemo(() => {
+    const param = searchParams.get('offset')
+    return param ? Number(param) : 0
+  }, [searchParams])
+
+  const { data, isLoading, isError } = useSearchItems(searchTerm, offset)
   const products = data?.data.items
 
   return (
