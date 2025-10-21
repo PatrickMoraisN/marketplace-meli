@@ -1,11 +1,13 @@
 import { SearchDataDTO } from '@/app/api/types/dto'
 
 export function transformSearchResponse(results: any[], query: string, offset = 0): SearchDataDTO {
+  const ITEMS_PER_PAGE = 10
   const filtered = results.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
 
   return {
     categories: [query],
-    items: filtered.slice(offset, offset + 10).map((r: any) => ({
+    total_items: filtered.length,
+    items: filtered.slice(offset, offset + ITEMS_PER_PAGE).map((r: any) => ({
       id: r.id,
       title: r.title,
       price: {

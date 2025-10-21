@@ -14,6 +14,7 @@ export interface ItemDTO {
 }
 
 export interface SearchDataDTO {
+  total_items: number
   categories: string[]
   items: ItemDTO[]
 }
