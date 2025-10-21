@@ -1,0 +1,40 @@
+@use '@/shared/styles/tokens' as *;
+
+.historyBox {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: $color-white;
+  border: 1px solid $color-bg-light;
+  border-radius: 4px;
+  margin-top: 4px;
+  z-index: 50;
+  box-shadow: 0 4px 12px $color-shadow;
+  padding: 0.25rem 0;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-bg-light;
+  }
+
+  .term {
+    font-size: 0.9rem;
+    color: $color-text-secondary;
+  }
+
+  .time {
+    font-size: 0.8rem;
+    color: $color-text-overview;
+  }
+}
