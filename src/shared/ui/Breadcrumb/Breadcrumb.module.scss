@@ -1,0 +1,48 @@
+@use '@/shared/styles/tokens' as *;
+
+.breadcrumb {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  color: $color-text-tertiary;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  background-color: transparent;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link {
+  color: $color-text-tertiary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-link;
+  }
+}
+
+.current {
+  color: $color-text-secondary;
+  font-weight: 400;
+}
+
+.separator {
+  color: $color-text-tertiary-light;
+  margin: 0 0.25rem;
+  user-select: none;
+}
