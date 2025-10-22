@@ -1,0 +1,15 @@
+@use '@/shared/styles/tokens' as *;
+
+.wrapper {
+  background-color: $color-bg-white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px $color-shadow;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,70 @@
+@use '@/shared/styles/tokens' as *;
+
+.base {
+  font-family: 'Proxima Nova', sans-serif;
+  color: $color-text-primary;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 300;
+  color: $color-text-primary;
+
+  @include respond-to(md) {
+    font-size: 24px;
+  }
+}
+
+.price {
+  display: block;
+  font-size: 24px;
+  font-weight: 400;
+  color: $color-text-primary;
+
+  @include respond-to(md) {
+    font-size: 36px;
+  }
+}
+
+.oldPrice {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  color: $color-text-tertiary;
+  text-decoration: line-through;
+}
+
+.discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-success;
+}
+
+.installments {
+  font-size: 14px;
+  font-weight: 400;
+  color: $color-text-tertiary;
+  display: block;
+}
+
+.shipping {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-success;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.seller {
+  font-size: 14px;
+  font-weight: 400;
+  color: $color-text-tertiary;
+  display: block;
+}
+
+.condition {
+  font-size: 12px;
+  font-weight: 400;
+  color: $color-text-tertiary;
+  display: block;
+}
