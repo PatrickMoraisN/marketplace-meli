@@ -31,6 +31,9 @@
   .term {
     font-size: 0.9rem;
     color: $color-text-secondary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .time {

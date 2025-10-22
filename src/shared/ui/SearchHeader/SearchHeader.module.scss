@@ -13,17 +13,16 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: $container-max;
   gap: $space-7xl;
-  padding: 0 $space-lg;
+  padding: 0 $space-3xl;
 
   @include respond-below(sm) {
     flex-direction: column;
     align-items: center;
     gap: $space-md;
-    padding: $space-md;
   }
 }
 
@@ -39,7 +38,6 @@
 
 .searchWrapper {
   flex: 1;
-  margin-left: $space-lg;
 
   input {
     width: 100%;
@@ -50,6 +48,6 @@
   }
 
   @include respond-below(sm) {
-    width: 80%;
+    width: 100%;
   }
 }
