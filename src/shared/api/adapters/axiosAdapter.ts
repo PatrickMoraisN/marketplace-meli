@@ -36,7 +36,7 @@ export class AxiosAdapter implements HttpAdapter {
         headers: response.headers as Record<string, string>,
       }
     } catch (error: any) {
-      throw this.handleError({ error })
+      throw this.handleError(error)
     }
   }
 
