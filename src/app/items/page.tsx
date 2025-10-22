@@ -6,6 +6,8 @@ import { SearchHeader } from '@/shared/ui'
 import { Pagination } from '@/shared/ui/Pagination/Pagination'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
+import { ProductList } from '../../modules/Product/components/ProductList/ProductList'
+import { Breadcrumb } from '../../shared/ui/Breadcrumb/Breadcrumb'
 import styles from './page.module.scss'
 
 export default function ItemsPage() {
@@ -22,56 +24,35 @@ export default function ItemsPage() {
 
   const { data, isLoading, isError } = useSearchItems(searchTerm, page)
   const totalItems = Number(data?.data.total_items)
-  const totalPages = Math.ceil(totalItems / PAGINATION_CONFIG.searchItems.itemsPerPage)
+  const totalPages = Math.ceil(totalItems / PAGINATION_CONFIG.searchItems.itemsPerPage) || 1
 
   const products = data?.data.items
+
+  const hasProducts = products && products.length > 0
 
   return (
     <>
       <SearchHeader />
       <main className={styles.itemsPage}>
         <div className={styles.container}>
-          <h1 className={styles.title}>
-            Resultados para: <span>{searchTerm}</span>
-          </h1>
+          <Breadcrumb
+            className={styles.breadcrumb}
+            items={[
+              { label: 'Celulares e Telefones', href: '/celulares' },
+              { label: 'Celulares e Smartphones', href: '/celulares/smartphones' },
+              { label: 'Apple iPhone' },
+            ]}
+          />
 
           {isLoading && <p>Carregando...</p>}
           {isError && <p>Ocorreu um erro ao buscar os itens.</p>}
 
-          {products && (
-            <>
-              {products && products.length > 0 ? (
-                <div>
-                  {products.map((item) => (
-                    <div key={item.id} style={{ marginBottom: '1rem' }}>
-                      <img
-                        src={item.picture}
-                        alt={item.title}
-                        width={100}
-                        height={100}
-                        style={{ objectFit: 'cover', borderRadius: '8px' }}
-                      />
-                      <p>
-                        <strong>{item.title}</strong>
-                      </p>
-                      <p>
-                        💰 {item.price.currency} {item.price.amount.toLocaleString()}
-                      </p>
-                      <p>📦 Condição: {item.condition === 'new' ? 'Novo' : 'Usado'}</p>
-                      <p>🚚 Frete grátis: {item.free_shipping ? 'Sim' : 'Não'}</p>
-                      <p>💳 Parcelas: {item.installments || 'N/A'}</p>
-                      <hr style={{ margin: '1rem 0' }} />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p>Nenhum resultado encontrado.</p>
-              )}
-            </>
-          )}
-        </div>
+          <ProductList products={products} />
 
-        <Pagination totalPages={totalPages} basePath="/items" />
+          <footer className={styles.paginationFooter}>
+            {hasProducts && <Pagination totalPages={totalPages} basePath="/items" />}
+          </footer>
+        </div>
       </main>
     </>
   )

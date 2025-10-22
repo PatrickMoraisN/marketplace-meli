@@ -4,7 +4,6 @@
   width: 100%;
   min-height: 90vh;
   background-color: $color-bg-light;
-  padding: 2rem 0 4rem;
 }
 
 .container {
@@ -35,4 +34,16 @@
   box-shadow: 0 1px 4px $color-shadow;
   color: $color-text-tertiary-light;
   font-size: 1rem;
+}
+
+.paginationFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  background-color: rgba($color-white, 0.4);
+  height: 100px;
+}
+
+.breadcrumb {
+  padding-top: 30px;
 }
