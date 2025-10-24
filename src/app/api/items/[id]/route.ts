@@ -46,14 +46,29 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const fromSearch = allSearchResults.find((r: any) => r.id === id)
 
     if (fromSearch) {
-      item.installments = fromSearch.installments?.quantity
-        ? `${fromSearch.installments.quantity}x`
-        : ''
-      item.installments_amount = fromSearch.installments?.amount ?? 0
-      item.installments_rate = fromSearch.installments?.rate ?? 0
+      const searchInstallments = fromSearch.installments
+
+      item.installments = searchInstallments?.quantity ? `${searchInstallments.quantity}x` : ''
+
+      item.installments_amount = searchInstallments?.amount ?? 0
+      item.installments_rate = searchInstallments?.rate ?? 0
+
       item.sold_quantity = fromSearch.sold_quantity ?? item.sold_quantity ?? 0
-      item.shipping = { ...item.shipping, ...fromSearch.shipping }
-      item.original_price = item.original_price ?? fromSearch.original_price
+
+      item.shipping = {
+        ...(item.shipping || {}),
+        ...(fromSearch.shipping || {}),
+      }
+
+      item.original_price = item.original_price ?? fromSearch.original_price ?? item.price
+
+      if (!item.price && fromSearch.price) {
+        item.price = fromSearch.price
+      }
+
+      if (!item.condition && fromSearch.condition) {
+        item.condition = fromSearch.condition
+      }
     }
 
     const result = buildFullItemData(item, description, category)
