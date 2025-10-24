@@ -1,0 +1,37 @@
+// src/app/not-found.module.scss
+@use '@/shared/styles/tokens' as *;
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 80vh;
+  background-color: $color-bg-page;
+
+  h1 {
+    font-size: 2rem;
+    color: $color-text-primary;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $color-text-tertiary;
+    margin-bottom: 2rem;
+  }
+
+  .backLink {
+    background: $color-border-blue;
+    color: $color-white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($color-border-blue, 8%);
+    }
+  }
+}
