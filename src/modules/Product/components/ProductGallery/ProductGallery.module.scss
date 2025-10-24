@@ -2,7 +2,7 @@
 
 .gallery {
   display: flex;
-  gap: 1rem;
+  gap: $space-xl;
   width: 100%;
   max-width: 100%;
 
@@ -20,7 +20,7 @@
   position: relative;
   flex: 1;
   border: 1px solid $color-border-light;
-  border-radius: 8px;
+  border-radius: $space-sm;
   overflow: hidden;
   background-color: $color-bg-white;
   aspect-ratio: 4 / 3;
@@ -47,8 +47,8 @@
 }
 
 .spinner {
-  width: 2rem;
-  height: 2rem;
+  width: $space-6xl;
+  height: $space-6xl;
   border: 3px solid $color-border-light;
   border-top: 3px solid $color-border-blue;
   border-radius: 50%;
@@ -63,21 +63,21 @@
 
 .badge {
   position: absolute;
-  bottom: 0.75rem;
-  right: 0.75rem;
+  bottom: $space-lg;
+  right: $space-lg;
   background: $color-overlay;
   color: $color-white;
   font-size: $font-size-xs;
   font-weight: $font-weight-medium;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: $space-xxs $space-sm;
+  border-radius: $space-xxs;
   backdrop-filter: blur(4px);
 }
 
 .thumbnails {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: $space-sm;
   flex-wrap: wrap;
   order: 2;
 
@@ -92,7 +92,7 @@
   position: relative;
   width: 64px;
   height: 64px;
-  border-radius: 6px;
+  border-radius: $space-xs;
   overflow: hidden;
   border: 2px solid transparent;
   background-color: $color-bg-white;

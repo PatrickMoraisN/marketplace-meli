@@ -1,9 +1,9 @@
 @use '@/shared/styles/tokens' as *;
 
 .wrapper {
-  border-radius: 4px;
-  padding: 1.5rem 2rem;
-  max-width: 1200px;
+  border-radius: $space-xxs;
+  padding: $space-3xl $space-6xl;
+  max-width: $container-max;
   margin: 0 auto;
 }
 

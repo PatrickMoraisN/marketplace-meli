@@ -1,70 +1,70 @@
 @use '@/shared/styles/tokens' as *;
 
 .base {
-  font-family: 'Proxima Nova', sans-serif;
+  font-family: $font-family-base;
   color: $color-text-primary;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-light;
   color: $color-text-primary;
 
   @include respond-to(md) {
-    font-size: 24px;
+    font-size: $font-size-3xl;
   }
 }
 
 .price {
   display: block;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-regular;
   color: $color-text-primary;
 
   @include respond-to(md) {
-    font-size: 36px;
+    font-size: $font-size-5xl;
   }
 }
 
 .oldPrice {
   display: inline-block;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   text-decoration: line-through;
 }
 
 .discount {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
   color: $color-success;
 }
 
 .installments {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   display: block;
 }
 
 .shipping {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
   color: $color-success;
   display: block;
-  margin-top: 0.25rem;
+  margin-top: $space-xxs;
 }
 
 .seller {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   display: block;
 }
 
 .condition {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   display: block;
 }
