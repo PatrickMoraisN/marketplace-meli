@@ -17,15 +17,31 @@
 .historyItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   text-align: left;
   padding: 0.5rem 0.75rem;
   background: transparent;
   border: none;
   cursor: pointer;
+  transition: background-color 0.15s ease;
 
   &:hover {
     background-color: $color-bg-light;
+  }
+
+  .leftGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+    transform: scaleX(-1);
+    opacity: 0.6;
   }
 
   .term {
@@ -39,5 +55,6 @@
   .time {
     font-size: 0.8rem;
     color: $color-text-overview;
+    flex-shrink: 0;
   }
 }

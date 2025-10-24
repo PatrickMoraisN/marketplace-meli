@@ -21,8 +21,13 @@ export const SearchHistory = ({ history, onSelect }: Props) => {
           key={item.timestamp}
           className={styles.historyItem}
           onMouseDown={() => onSelect(item.term)}
+          aria-label="Selecionar termo de pesquisa do histórico"
         >
-          <span className={styles.term}>{item.term}</span>
+          <div className={styles.leftGroup}>
+            <img src="/search-icon.png" alt="ícone de pesquisa" className={styles.icon} />
+            <span className={styles.term}>{item.term}</span>
+          </div>
+
           <span className={styles.time}>{timeAgo(item.timestamp)}</span>
         </button>
       ))}
