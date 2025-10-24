@@ -8,13 +8,7 @@ import { Paper } from '@/shared/ui/Paper/Paper'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 import { ProductList } from '../../modules/Product/components/ProductList/ProductList'
-import { createMetadata } from '../../shared/utils/seo'
 import styles from './page.module.scss'
-
-export const metadata = createMetadata({
-  title: 'Buscar produtos',
-  path: '/items',
-})
 
 export default function ItemsPage() {
   const searchParams = useSearchParams()

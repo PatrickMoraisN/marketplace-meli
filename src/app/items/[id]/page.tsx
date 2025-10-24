@@ -2,26 +2,11 @@
 
 import { ProductGallery } from '@/modules/Product/components/ProductGallery/ProductGallery'
 import { useProductItem } from '@/modules/Product/hooks/useProductItem'
-import { productsService } from '@/modules/Product/services/productService'
 import { SearchHeader } from '@/shared/ui'
 import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
 import { Paper } from '@/shared/ui/Paper/Paper'
-import { createMetadata } from '@/shared/utils/seo'
 import { useParams } from 'next/navigation'
 import styles from './page.module.scss'
-
-type Props = { params: { id: string } }
-
-export async function generateMetadata({ params }: Props) {
-  const product = await productsService.getItemById(params.id)
-
-  return createMetadata({
-    title: product.title,
-    description: product.description,
-    image: product.pictures?.[0],
-    path: `/items/${params.id}`,
-  })
-}
 
 export default function ProductPage() {
   const { id } = useParams()
