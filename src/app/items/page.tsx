@@ -8,6 +8,7 @@ import { Paper } from '@/shared/ui/Paper/Paper'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 import { ProductList } from '../../modules/Product/components/ProductList/ProductList'
+import { ProductListPageSkeleton } from './page-skeleton'
 import styles from './page.module.scss'
 
 export default function ItemsPage() {
@@ -24,13 +25,16 @@ export default function ItemsPage() {
   const products = data?.data.items
   const hasProducts = products && products.length > 0
 
+  if (isLoading) {
+    return <ProductListPageSkeleton />
+  }
+
   return (
     <>
       <SearchHeader />
       <main className={styles.itemsPage}>
         <div className={styles.container}>
           <Paper className={styles.paperContent}>
-            {isLoading && <p>Carregando...</p>}
             {isError && <p>Ocorreu um erro ao buscar os itens.</p>}
 
             <ProductList products={products} />
