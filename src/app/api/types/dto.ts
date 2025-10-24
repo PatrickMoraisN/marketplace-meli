@@ -11,6 +11,10 @@ export interface ItemDTO {
   condition: string
   free_shipping: boolean
   installments: string
+  installments_amount: number
+  installments_rate: number
+  seller: string
+  type: string
 }
 
 export interface SearchDataDTO {
