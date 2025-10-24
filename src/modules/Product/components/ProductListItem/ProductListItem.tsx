@@ -4,6 +4,7 @@ import { ProductTexting } from '@/modules/Product/components/ProductTexting/Prod
 import { cn } from '@/shared/utils/classNames'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import styles from './ProductListItem.module.scss'
 
 interface ProductListItemProps {
@@ -38,10 +39,15 @@ export function ProductListItem({
   className,
 }: ProductListItemProps) {
   const showInstallments = installments && installmentsAmount && installmentsRate === 0
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
 
   return (
     <Link
-      href={`/items/${id}`}
+      href={{
+        pathname: `/items/${id}`,
+        query: { search },
+      }}
       className={cn(styles.item, className)}
       aria-label={`Ver detalhes do produto: ${title}`}
       prefetch

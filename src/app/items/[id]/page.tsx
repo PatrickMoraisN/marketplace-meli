@@ -4,7 +4,7 @@ import { ProductGallery } from '@/modules/Product/components/ProductGallery/Prod
 import { useProductItem } from '@/modules/Product/hooks/useProductItem'
 import { SearchHeader } from '@/shared/ui'
 import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import styles from './page.module.scss'
 
 export default function ProductPage() {
@@ -12,8 +12,9 @@ export default function ProductPage() {
   const { data, isLoading, error } = useProductItem(id as string)
   const showInstallments =
     data?.installments && data?.installments_amount && data?.installments_rate === 0
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
 
-  console.log(JSON.stringify(data?.installments, null, 2))
   if (isLoading) {
     return (
       <div className={styles.centered}>
@@ -49,7 +50,6 @@ export default function ProductPage() {
   const breadcrumbItems =
     data.category_path_from_root?.map((label: string, index: number) => ({
       label,
-      href: index < data.category_path_from_root.length - 1 ? `/category/${label}` : undefined,
     })) || []
 
   return (
@@ -60,14 +60,12 @@ export default function ProductPage() {
         <Breadcrumb items={breadcrumbItems} className={styles.breadcrumb} />
 
         <div className={styles.productSection}>
-          {/* Galeria */}
           {images.length > 0 && (
             <div className={styles.galleryWrapper}>
               <ProductGallery images={images} />
             </div>
           )}
 
-          {/* Informações principais */}
           <div className={styles.details}>
             <p className={styles.condition}>
               {data.condition === 'new' ? 'Novo' : 'Usado'} | +{data.sold_quantity} vendidos
@@ -105,10 +103,9 @@ export default function ProductPage() {
           </div>
         </div>
 
-        {/* Descrição */}
         <div className={styles.descriptionSection}>
-          <h3>Descripción</h3>
-          <p>{data.description || 'Sin descripción disponible.'}</p>
+          <h3>Descrição</h3>
+          <p>{data.description || 'Sem descrição disponível.'}</p>
         </div>
       </div>
     </div>

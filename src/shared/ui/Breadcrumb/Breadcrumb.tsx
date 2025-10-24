@@ -2,39 +2,51 @@
 
 import { cn } from '@/shared/utils/classNames'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import styles from './Breadcrumb.module.scss'
 
 interface BreadcrumbProps {
-  items: { label: string; href?: string }[]
+  items: { label: string }[]
   className?: string
 }
 
+function BackToList({ url }: { url: string }) {
+  return (
+    <Link href={url} className={styles.backLink}>
+      Voltar para lista
+    </Link>
+  )
+}
+
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
-  if (!items || items.length === 0) return null
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+
+  const backToListUrl = search ? `/items?search=${encodeURIComponent(search)}` : '/items'
+
+  if (!items || items.length === 0) return <BackToList url={backToListUrl} />
 
   return (
     <nav aria-label="Navegação de categorias" className={cn(styles.breadcrumb, className)}>
-      <ol>
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1
+      <div className={styles.inner}>
+        <BackToList url={backToListUrl} />
 
-          return (
+        <span className={styles.divider}>|</span>
+
+        <ol className={styles.list}>
+          {items.map((item, index) => (
             <li key={item.label} className={styles.item}>
-              {item.href && !isLast ? (
-                <Link href={item.href} className={styles.link}>
-                  {item.label}
-                </Link>
-              ) : (
-                <span className={styles.current} aria-current="page">
-                  {item.label}
-                </span>
-              )}
-
-              {!isLast && <span className={styles.separator}>›</span>}
+              <span
+                className={index === items.length - 1 ? styles.current : styles.link}
+                aria-current={index === items.length - 1 ? 'page' : undefined}
+              >
+                {item.label}
+              </span>
+              {index < items.length - 1 && <span className={styles.separator}>›</span>}
             </li>
-          )
-        })}
-      </ol>
+          ))}
+        </ol>
+      </div>
     </nav>
   )
 }

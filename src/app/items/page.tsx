@@ -7,7 +7,6 @@ import { Pagination } from '@/shared/ui/Pagination/Pagination'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 import { ProductList } from '../../modules/Product/components/ProductList/ProductList'
-import { Breadcrumb } from '../../shared/ui/Breadcrumb/Breadcrumb'
 import styles from './page.module.scss'
 
 export default function ItemsPage() {
@@ -35,15 +34,6 @@ export default function ItemsPage() {
       <SearchHeader />
       <main className={styles.itemsPage}>
         <div className={styles.container}>
-          <Breadcrumb
-            className={styles.breadcrumb}
-            items={[
-              { label: 'Celulares e Telefones', href: '/celulares' },
-              { label: 'Celulares e Smartphones', href: '/celulares/smartphones' },
-              { label: 'Apple iPhone' },
-            ]}
-          />
-
           {isLoading && <p>Carregando...</p>}
           {isError && <p>Ocorreu um erro ao buscar os itens.</p>}
 
