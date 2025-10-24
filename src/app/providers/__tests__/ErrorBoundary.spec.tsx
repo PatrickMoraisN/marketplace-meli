@@ -1,5 +1,14 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+// 🔹 Mock do env.ts (antes de importar os componentes que o usam)
+vi.mock('@/shared/config/env', () => ({
+  env: {
+    NODE_ENV: 'development',
+    NEXT_PUBLIC_SITE_URL: 'http://localhost:3000',
+  },
+}))
+
 import { DefaultFallback, ErrorBoundary } from '../ErrorBoundary'
 
 const Boom = () => {
@@ -15,6 +24,7 @@ describe('ErrorBoundary', () => {
   beforeEach(() => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
   })
+
   afterEach(() => {
     vi.restoreAllMocks()
   })
@@ -40,7 +50,7 @@ describe('ErrorBoundary', () => {
     expect(screen.getByText(defaultFallbackTexts.description)).toBeInTheDocument()
   })
 
-  it('uses custom fallback when it passed by props', () => {
+  it('uses custom fallback when passed by props', () => {
     const CustomFallback = <div>Custom Fallback!</div>
 
     render(
@@ -52,17 +62,22 @@ describe('ErrorBoundary', () => {
     expect(screen.getByText('Custom Fallback!')).toBeInTheDocument()
   })
 
-  it('shows error message on development mode', () => {
-    const originalEnv = process.env.NODE_ENV
-    vi.stubEnv('NODE_ENV', 'development')
+  it('shows error message on development mode', async () => {
+    // 🔹 Atualiza mock dinamicamente para development
+    vi.doMock('@/shared/config/env', () => ({
+      env: {
+        NODE_ENV: 'development',
+        NEXT_PUBLIC_SITE_URL: 'http://localhost:3000',
+      },
+    }))
+
+    const { ErrorBoundary: DevErrorBoundary } = await import('../ErrorBoundary')
 
     render(
-      <ErrorBoundary>
+      <DevErrorBoundary>
         <Boom />
-      </ErrorBoundary>
+      </DevErrorBoundary>
     )
-
-    vi.stubEnv('NODE_ENV', originalEnv)
 
     expect(screen.getByText('Boom!')).toBeInTheDocument()
   })
@@ -76,14 +91,18 @@ describe('DefaultFallback', () => {
     expect(screen.getByText(defaultFallbackTexts.description)).toBeInTheDocument()
   })
 
-  it('shows error message on development mode', () => {
-    const originalEnv = process.env.NODE_ENV
-    vi.stubEnv('NODE_ENV', 'development')
+  it('shows error message on development mode', async () => {
+    vi.doMock('@/shared/config/env', () => ({
+      env: {
+        NODE_ENV: 'development',
+        NEXT_PUBLIC_SITE_URL: 'http://localhost:3000',
+      },
+    }))
 
-    render(<DefaultFallback error={new Error('Development mode')} />)
+    const { DefaultFallback: DevFallback } = await import('../ErrorBoundary')
+
+    render(<DevFallback error={new Error('Development mode')} />)
 
     expect(screen.getByText('Development mode')).toBeInTheDocument()
-
-    vi.stubEnv('NODE_ENV', originalEnv)
   })
 })
