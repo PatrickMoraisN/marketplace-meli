@@ -24,10 +24,9 @@ export function buildFallbackItem(id: string) {
       condition: found.condition || 'new',
       free_shipping: found.shipping?.free_shipping ?? false,
       sold_quantity: found.sold_quantity ?? 0,
-      installments:
-        found.installments && found.installments.quantity
-          ? `${found.installments.quantity}x de $${found.installments.amount}`
-          : null,
+      installments: found.installments?.quantity ? `${found.installments.quantity}x` : '',
+      installments_amount: found.installments?.amount ?? 0,
+      installments_rate: found.installments?.rate ?? 0,
       description: 'Descrição não disponível.',
       attributes: found.attributes || [],
       category_path_from_root: found.category_path_from_root?.map((cat: any) => cat.name) || [],
