@@ -66,7 +66,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 
       item.original_price = item.original_price ?? fromSearch.original_price ?? item.price
 
-      if (!item.price && fromSearch.price) {
+      if (fromSearch.price) {
         item.price = fromSearch.price
       }
       if (!item.condition && fromSearch.condition) {
