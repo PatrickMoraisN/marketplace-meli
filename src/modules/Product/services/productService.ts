@@ -1,12 +1,8 @@
-import { HttpClientFactory } from '@/shared/api/httpClientFactory'
-
-const http = HttpClientFactory.createAxiosClient({
-  baseURL: '/api',
-})
+import { httpClient } from '@/shared/api/httpClient'
 
 export const productsService = {
   async getItemById(id: string) {
-    const response = await http.request<{ item: any }>({
+    const response = await httpClient.request<{ item: any }>({
       url: `/items/${id}`,
       method: 'GET',
     })
