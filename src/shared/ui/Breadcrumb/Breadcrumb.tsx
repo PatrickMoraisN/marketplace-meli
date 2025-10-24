@@ -24,14 +24,12 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
 
   const backToListUrl = search ? `/items?search=${encodeURIComponent(search)}` : '/items'
 
-  if (!items || items.length === 0) return <BackToList url={backToListUrl} />
-
   return (
     <nav aria-label="Navegação de categorias" className={cn(styles.breadcrumb, className)}>
       <div className={styles.inner}>
         <BackToList url={backToListUrl} />
 
-        <span className={styles.divider}>|</span>
+        {items.length !== 0 && <span className={styles.divider}>|</span>}
 
         <ol className={styles.list}>
           {items.map((item, index) => (

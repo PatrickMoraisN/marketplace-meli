@@ -13,7 +13,6 @@ export default function ProductPage() {
   const showInstallments =
     data?.installments && data?.installments_amount && data?.installments_rate === 0
   const searchParams = useSearchParams()
-  const search = searchParams.get('search')
 
   if (isLoading) {
     return (
@@ -48,7 +47,7 @@ export default function ProductPage() {
     })) ?? []
 
   const breadcrumbItems =
-    data.category_path_from_root?.map((label: string, index: number) => ({
+    data.category_path_from_root?.map((label: string) => ({
       label,
     })) || []
 
