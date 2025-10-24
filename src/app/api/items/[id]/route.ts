@@ -48,10 +48,14 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     if (fromSearch) {
       const searchInstallments = fromSearch.installments
 
-      item.installments = searchInstallments?.quantity ? `${searchInstallments.quantity}x` : ''
-
-      item.installments_amount = searchInstallments?.amount ?? 0
-      item.installments_rate = searchInstallments?.rate ?? 0
+      if (searchInstallments && typeof searchInstallments === 'object') {
+        item.installments = {
+          quantity: searchInstallments.quantity ?? 0,
+          amount: searchInstallments.amount ?? 0,
+          rate: searchInstallments.rate ?? 0,
+          currency_id: searchInstallments.currency_id ?? 'ARS',
+        }
+      }
 
       item.sold_quantity = fromSearch.sold_quantity ?? item.sold_quantity ?? 0
 
@@ -65,7 +69,6 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       if (!item.price && fromSearch.price) {
         item.price = fromSearch.price
       }
-
       if (!item.condition && fromSearch.condition) {
         item.condition = fromSearch.condition
       }
