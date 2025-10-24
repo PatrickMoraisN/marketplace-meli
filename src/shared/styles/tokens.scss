@@ -1,4 +1,4 @@
-@import './spacing';
-@import './variables';
-@import './typography';
-@import './responsive';
+@use './spacing' as *;
+@use './variables' as *;
+@use './typography' as *;
+@use './responsive' as *;
