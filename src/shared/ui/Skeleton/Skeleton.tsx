@@ -8,9 +8,10 @@ interface SkeletonProps {
   height?: string | number
   radius?: string | number
   className?: string
+  style?: React.CSSProperties
 }
 
-export function Skeleton({ width, height, radius = 6, className }: SkeletonProps) {
+export function Skeleton({ width, height, radius = 6, className, style }: SkeletonProps) {
   return (
     <div
       className={cn(styles.skeleton, className)}
