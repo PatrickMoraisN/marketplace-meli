@@ -40,9 +40,11 @@ export default function ItemsPage() {
             <ProductList products={products} />
           </Paper>
         </div>
-        <footer className={styles.paginationFooter}>
-          {hasProducts && <Pagination totalPages={totalPages} basePath="/items" />}
-        </footer>
+        {hasProducts && (
+          <footer className={styles.paginationFooter}>
+            <Pagination totalPages={totalPages} basePath="/items" />
+          </footer>
+        )}
       </main>
     </>
   )
