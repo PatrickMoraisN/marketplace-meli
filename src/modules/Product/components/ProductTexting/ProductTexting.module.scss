@@ -28,7 +28,7 @@
 
 .oldPrice {
   display: inline-block;
-  font-size: $font-size-sm;
+  font-size: $font-size-xs;
   font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   text-decoration: line-through;
@@ -43,7 +43,7 @@
 .installments {
   font-size: $font-size-sm;
   font-weight: $font-weight-regular;
-  color: $color-text-tertiary;
+  color: $color-success;
   display: block;
 }
 
@@ -52,7 +52,7 @@
   font-weight: $font-weight-semibold;
   color: $color-success;
   display: block;
-  margin-top: $space-xxs;
+  margin-top: 1rem;
 }
 
 .seller {
@@ -60,6 +60,7 @@
   font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   display: block;
+  margin-top: -10px;
 }
 
 .condition {
@@ -67,4 +68,5 @@
   font-weight: $font-weight-regular;
   color: $color-text-tertiary;
   display: block;
+  margin-top: 1rem;
 }

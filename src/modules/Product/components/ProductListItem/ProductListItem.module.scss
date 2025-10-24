@@ -51,8 +51,9 @@
 }
 
 .priceBlock {
+  margin-top: 1.5rem;
   display: flex;
-  align-items: center;
-  gap: $space-sm;
+  flex-direction: column;
+  align-items: start;
   flex-wrap: wrap;
 }
