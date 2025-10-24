@@ -1,6 +1,7 @@
 'use client'
 
 import { ProductGallery } from '@/modules/Product/components/ProductGallery/ProductGallery'
+import { ProductTexting } from '@/modules/Product/components/ProductTexting/ProductTexting'
 import { useProductItem } from '@/modules/Product/hooks/useProductItem'
 import { SearchHeader } from '@/shared/ui'
 import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
@@ -51,29 +52,39 @@ export default function ProductPage() {
             )}
 
             <div className={styles.details}>
-              <p className={styles.condition}>
+              <ProductTexting.Condition className={styles.condition}>
                 {data.condition === 'new' ? 'Novo' : 'Usado'} | +{data.sold_quantity} vendidos
-              </p>
-              <h1 className={styles.title}>{data.title}</h1>
-              <p className={styles.seller}>Por {data.seller || 'OCEANGREEN ARGENTINA'}</p>
+              </ProductTexting.Condition>
+
+              <ProductTexting.Title as="h1" className={styles.title}>
+                {data.title}
+              </ProductTexting.Title>
+
+              <ProductTexting.Seller className={styles.seller}>
+                Por {data.seller || 'OCEANGREEN ARGENTINA'}
+              </ProductTexting.Seller>
 
               <div className={styles.priceBlock}>
-                <h2 className={styles.price}>
+                <ProductTexting.Price as="h2" className={styles.price}>
                   {new Intl.NumberFormat('es-AR', {
                     style: 'currency',
                     currency: data.price.currency,
                     maximumFractionDigits: 0,
                   }).format(data.price.amount)}
-                </h2>
+                </ProductTexting.Price>
 
                 {showInstallments && (
-                  <p className={styles.installments}>
+                  <ProductTexting.Installments className={styles.installments}>
                     Mesmo preço em {data.installments} sem juros de{' '}
                     {data.installments_amount.toLocaleString()}
-                  </p>
+                  </ProductTexting.Installments>
                 )}
 
-                {data.free_shipping && <p className={styles.freeShipping}>Envío gratis</p>}
+                {data.free_shipping && (
+                  <ProductTexting.Shipping className={styles.freeShipping}>
+                    Envío gratis
+                  </ProductTexting.Shipping>
+                )}
 
                 {data.attributes?.some((a: any) => a.name === 'Color') && (
                   <p className={styles.color}>
