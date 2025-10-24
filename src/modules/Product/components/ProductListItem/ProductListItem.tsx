@@ -3,21 +3,23 @@
 import { ProductTexting } from '@/modules/Product/components/ProductTexting/ProductTexting'
 import { cn } from '@/shared/utils/classNames'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './ProductListItem.module.scss'
 
 interface ProductListItemProps {
   id: string
   title: string
   picture: string
-  price: { currency: string; amount: number }
+  price: { currency: string; amount: number; regular_amount?: number }
   condition: string
   free_shipping: boolean
   installments?: string
+  installmentsAmount?: number
+  installmentsRate?: number
   seller?: string
-  oldPrice?: number
   discount?: string
-  onClick?: () => void
   className?: string
+  type?: string
 }
 
 export function ProductListItem({
@@ -28,20 +30,21 @@ export function ProductListItem({
   condition,
   free_shipping,
   installments,
+  installmentsAmount,
+  installmentsRate,
   seller,
-  oldPrice,
+  type,
   discount,
-  onClick,
   className,
 }: ProductListItemProps) {
+  const showInstallments = installments && installmentsAmount && installmentsRate === 0
+
   return (
-    <article
-      key={id}
+    <Link
+      href={`/items/${id}`}
       className={cn(styles.item, className)}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label={`Produto: ${title}`}
+      aria-label={`Ver detalhes do produto: ${title}`}
+      prefetch
     >
       <div className={styles.imageWrapper}>
         <Image
@@ -62,21 +65,27 @@ export function ProductListItem({
         {seller && <ProductTexting.Seller>Por {seller}</ProductTexting.Seller>}
 
         <div className={styles.priceBlock}>
-          {oldPrice && (
-            <ProductTexting.OldPrice>${oldPrice.toLocaleString()}</ProductTexting.OldPrice>
+          {price.regular_amount && type === 'promotion' && (
+            <ProductTexting.OldPrice>
+              ${price.regular_amount.toLocaleString()}
+            </ProductTexting.OldPrice>
           )}
           <ProductTexting.Price>${price.amount.toLocaleString()}</ProductTexting.Price>
           {discount && <ProductTexting.Discount>{discount}</ProductTexting.Discount>}
         </div>
 
-        {installments && <ProductTexting.Installments>{installments}</ProductTexting.Installments>}
+        {showInstallments && (
+          <ProductTexting.Installments>
+            Mesmo preço em {installments} sem juros de ${installmentsAmount?.toLocaleString()}
+          </ProductTexting.Installments>
+        )}
 
-        {free_shipping && <ProductTexting.Shipping>Envio gratis</ProductTexting.Shipping>}
+        {free_shipping && <ProductTexting.Shipping>Envio grátis</ProductTexting.Shipping>}
 
         <ProductTexting.Condition>
           {condition === 'new' ? 'Novo' : 'Reacondicionado'}
         </ProductTexting.Condition>
       </div>
-    </article>
+    </Link>
   )
 }
