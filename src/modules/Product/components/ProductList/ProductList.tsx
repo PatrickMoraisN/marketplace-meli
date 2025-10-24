@@ -1,4 +1,4 @@
-import { ItemDTO } from '../../../../app/api/types/dto'
+import { ItemDTO } from '@/app/api/types/dto'
 import { ProductListEmpty } from '../ProductListItem/ProductListEmpty'
 import { ProductListItem } from '../ProductListItem/ProductListItem'
 import styles from './ProductList.module.scss'
@@ -24,9 +24,10 @@ export function ProductList({ products }: ProductListProps) {
               condition={item.condition}
               free_shipping={item.free_shipping}
               installments={item.installments}
-              // seller={item.seller}
-              // oldPrice={item.oldPrice}
-              // discount={item.discount}
+              installmentsAmount={item.installments_amount}
+              installmentsRate={item.installments_rate}
+              type={item.type}
+              seller={item.seller}
             />
           ))}
         </div>
