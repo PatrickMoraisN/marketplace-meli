@@ -7,11 +7,11 @@
   width: 100%;
   background: $color-white;
   border: 1px solid $color-bg-light;
-  border-radius: 4px;
-  margin-top: 4px;
+  border-radius: $space-xxs;
+  margin-top: $space-xxs;
   z-index: 50;
-  box-shadow: 0 4px 12px $color-shadow;
-  padding: 0.25rem 0;
+  box-shadow: 0 $space-xxs $space-lg $color-shadow;
+  padding: $space-xxs 0;
 }
 
 .historyItem {
@@ -20,7 +20,7 @@
   align-items: center;
   width: 100%;
   text-align: left;
-  padding: 0.5rem 0.75rem;
+  padding: $space-sm $space-lg;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -33,7 +33,7 @@
   .leftGroup {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-sm;
     overflow: hidden;
   }
 
@@ -45,7 +45,7 @@
   }
 
   .term {
-    font-size: 0.9rem;
+    font-size: $font-size-sm;
     color: $color-text-secondary;
     overflow: hidden;
     text-overflow: ellipsis;

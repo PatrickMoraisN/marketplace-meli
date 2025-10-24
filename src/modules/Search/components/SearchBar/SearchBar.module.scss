@@ -8,7 +8,7 @@
 
   & > input {
     flex: 1;
-    height: 34px;
+    height: $space-7xl;
   }
 }
 
@@ -27,7 +27,7 @@
   &::before {
     content: '';
     position: absolute;
-    right: 28px;
+    right: $space-4xl;
     top: 50%;
     transform: translateY(-50%);
     height: 60%;
