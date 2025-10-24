@@ -6,31 +6,20 @@ import { SearchHeader } from '@/shared/ui'
 import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
 import { Paper } from '@/shared/ui/Paper/Paper'
 import { useParams } from 'next/navigation'
+import { ProductPageSkeleton } from './page-skeleton'
 import styles from './page.module.scss'
 
 export default function ProductPage() {
   const { id } = useParams()
-  const { data, isLoading, error } = useProductItem(id as string)
+  const { data, isLoading, isNotFound, error } = useProductItem(id as string)
   const showInstallments =
     data?.installments && data?.installments_amount && data?.installments_rate === 0
 
   if (isLoading) {
-    return (
-      <div className={styles.centered}>
-        <p className="text-muted-foreground">Carregando produto...</p>
-      </div>
-    )
+    return <ProductPageSkeleton />
   }
 
-  if (error) {
-    return (
-      <div className={styles.centered}>
-        <p className="text-destructive">Erro ao carregar o produto.</p>
-      </div>
-    )
-  }
-
-  if (!data) {
+  if (isNotFound || error || !data) {
     return (
       <div className={styles.centered}>
         <p className="text-muted-foreground">Produto não encontrado.</p>
@@ -102,6 +91,20 @@ export default function ProductPage() {
             <h3>Descrição</h3>
             <p>{data.description || 'Sem descrição disponível.'}</p>
           </div>
+
+          {data.attributes?.length > 0 && (
+            <div className={styles.characteristicsSection}>
+              <h3>Características</h3>
+              <ul>
+                {data.attributes.map((attr: any) => (
+                  <li key={attr.id}>
+                    {attr.name}
+                    <span>{attr.value_name || '—'}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Paper>
       </div>
     </div>
