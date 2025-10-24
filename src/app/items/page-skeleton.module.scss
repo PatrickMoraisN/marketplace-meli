@@ -1,0 +1,40 @@
+@use '@/shared/styles/tokens' as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.item {
+  display: flex;
+  gap: $space-3xl;
+  padding: $space-3xl;
+  border-bottom: 1px solid $color-shadow;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include respond-below(md) {
+    flex-direction: column;
+    gap: $space-2xl;
+    padding: $space-2xl;
+  }
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+
+  @include respond-below(md) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
