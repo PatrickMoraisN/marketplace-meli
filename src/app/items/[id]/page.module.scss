@@ -28,7 +28,7 @@
   border-radius: $space-xxs;
   box-shadow: none;
 
-  @include respond-below(md) {
+  @include respond-below(lg) {
     grid-template-columns: 1fr;
     gap: $space-6xl;
     padding: $space-3xl $space-xl $space-6xl;
@@ -56,57 +56,57 @@
   flex-direction: column;
   justify-content: flex-start;
   min-width: 0;
-}
 
-.condition {
-  color: $color-text-tertiary;
-  font-size: $font-size-sm;
-  margin-bottom: $space-sm;
-}
-
-.title {
-  font-size: $font-size-4xl;
-  font-weight: $font-weight-semibold;
-  color: $color-text-primary;
-  margin-bottom: $space-sm;
-  line-height: $line-height-2xl;
-
-  @include respond-below(md) {
-    font-size: $font-size-2xl;
+  .condition {
+    color: $color-text-tertiary;
+    font-size: $font-size-sm;
+    margin-bottom: $space-sm;
   }
-}
 
-.seller {
-  color: $color-text-tertiary;
-  font-size: $font-size-md;
-  margin-bottom: $space-xl;
+  .title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    margin-bottom: $space-sm;
+    line-height: $line-height-2xl;
+
+    @include respond-below(md) {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  .seller {
+    color: $color-text-tertiary;
+    font-size: $font-size-md;
+    margin-bottom: $space-xl;
+  }
 }
 
 .priceBlock {
   margin-bottom: $space-2xl;
-}
 
-.price {
-  font-size: $font-size-6xl;
-  font-weight: $font-weight-medium;
-  color: $color-text-primary;
-  margin-bottom: $space-xxs;
+  .price {
+    font-size: $font-size-6xl;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    margin-bottom: $space-xxs;
 
-  @include respond-below(md) {
-    font-size: $font-size-4xl;
+    @include respond-below(md) {
+      font-size: $font-size-4xl;
+    }
   }
-}
 
-.installments {
-  font-size: $font-size-md;
-  color: $color-success;
-  margin-bottom: $space-sm;
-}
+  .installments {
+    font-size: $font-size-md;
+    color: $color-success;
+    margin-bottom: $space-sm;
+  }
 
-.freeShipping {
-  color: $color-success;
-  font-weight: $font-weight-semibold;
-  margin-bottom: $space-sm;
+  .freeShipping {
+    color: $color-success;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-sm;
+  }
 }
 
 .color {
