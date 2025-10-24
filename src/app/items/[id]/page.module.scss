@@ -1,0 +1,146 @@
+@use '@/shared/styles/tokens' as *;
+
+.page {
+  background-color: $color-bg-page;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
+}
+
+.productSection {
+  display: grid;
+  grid-template-columns: minmax(380px, 560px) 2fr;
+  align-items: start;
+  gap: 2rem;
+  background: $color-bg-white;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem 1rem 2rem;
+  }
+}
+
+.galleryWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-width: 380px;
+  max-width: 560px;
+  flex-shrink: 0;
+
+  @include respond-below(md) {
+    min-width: auto;
+    max-width: 100%;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+}
+
+.condition {
+  color: $color-text-tertiary;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: $color-text-primary;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+
+  @include respond-below(md) {
+    font-size: 1.4rem;
+  }
+}
+
+.seller {
+  color: $color-text-tertiary;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.priceBlock {
+  margin-bottom: 1.2rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 500;
+  color: $color-text-primary;
+  margin-bottom: 0.25rem;
+
+  @include respond-below(md) {
+    font-size: 1.6rem;
+  }
+}
+
+.installments {
+  font-size: 0.95rem;
+  color: $color-success;
+  margin-bottom: 0.5rem;
+}
+
+.freeShipping {
+  color: $color-success;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.color {
+  font-size: 0.95rem;
+  color: $color-text-primary;
+}
+
+.colorValue {
+  font-weight: 600;
+}
+
+.descriptionSection {
+  background: $color-bg-white;
+  padding: 2rem;
+  border-top: 1px solid $color-shadow;
+  margin-top: 0;
+  border-radius: 0 0 4px 4px;
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: $color-text-primary;
+  }
+
+  p {
+    color: $color-text-secondary;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  @include respond-below(md) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.centered {
+  text-align: center;
+  padding: 4rem 0;
+}

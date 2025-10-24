@@ -1,80 +1,109 @@
-import { ProductGallery } from '@/modules/Product/components/ProductGallery/ProductGallery'
+'use client'
 
-const mockImages = [
-  {
-    id: '1',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470',
-    alt: 'iPhone dourado em fundo branco - vista frontal',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200',
-  },
-  {
-    id: '2',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&sat=-100',
-    alt: 'iPhone dourado em fundo branco - vista lateral esquerda',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&sat=-100',
-  },
-  {
-    id: '3',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&hue=240',
-    alt: 'iPhone dourado em fundo branco - vista traseira',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&hue=240',
-  },
-  {
-    id: '4',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&hue=120',
-    alt: 'iPhone dourado em fundo branco - vista lateral direita',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&hue=120',
-  },
-  {
-    id: '5',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&sepia=80',
-    alt: 'iPhone dourado em fundo branco - vista em ângulo',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&sepia=80',
-  },
-  {
-    id: '6',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&contrast=150',
-    alt: 'iPhone dourado em fundo branco - detalhe das câmeras',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&contrast=150',
-  },
-  {
-    id: '7',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&contrast=150',
-    alt: 'iPhone dourado em fundo branco - detalhe das câmeras',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&contrast=150',
-  },
-  {
-    id: '9',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&contrast=150',
-    alt: 'iPhone dourado em fundo branco - detalhe das câmeras',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&contrast=150',
-  },
-  {
-    id: '10',
-    src: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470&contrast=150',
-    alt: 'iPhone dourado em fundo branco - detalhe das câmeras',
-    thumbnail:
-      'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=200&h=200&contrast=150',
-  },
-]
+import { ProductGallery } from '@/modules/Product/components/ProductGallery/ProductGallery'
+import { useProductItem } from '@/modules/Product/hooks/useProductItem'
+import { SearchHeader } from '@/shared/ui'
+import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
+import { useParams } from 'next/navigation'
+import styles from './page.module.scss'
 
 export default function ProductPage() {
-  return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-      <h1>iPhone 14 Pro</h1>
+  const { id } = useParams()
+  const { data, isLoading, error } = useProductItem(id as string)
+  const showInstallments =
+    data?.installments && data?.installments_amount && data?.installments_rate === 0
 
-      <section style={{ marginBottom: '3rem' }}>
-        <h2>Galeria Básica</h2>
-        <ProductGallery images={mockImages} />
-      </section>
+  if (isLoading) {
+    return (
+      <div className={styles.centered}>
+        <p className="text-muted-foreground">Carregando produto...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className={styles.centered}>
+        <p className="text-destructive">Erro ao carregar o produto.</p>
+      </div>
+    )
+  }
+
+  if (!data) {
+    return (
+      <div className={styles.centered}>
+        <p className="text-muted-foreground">Produto não encontrado.</p>
+      </div>
+    )
+  }
+
+  const images =
+    data.pictures?.map((src: string, index: number) => ({
+      id: String(index + 1),
+      src,
+      alt: `${data.title} - imagem ${index + 1}`,
+      thumbnail: src,
+    })) ?? []
+
+  const breadcrumbItems =
+    data.category_path_from_root?.map((label: string, index: number) => ({
+      label,
+      href: index < data.category_path_from_root.length - 1 ? `/category/${label}` : undefined,
+    })) || []
+
+  return (
+    <div className={styles.page}>
+      <SearchHeader />
+
+      <div className={styles.container}>
+        <Breadcrumb items={breadcrumbItems} className={styles.breadcrumb} />
+
+        <div className={styles.productSection}>
+          {/* Galeria */}
+          {images.length > 0 && (
+            <div className={styles.galleryWrapper}>
+              <ProductGallery images={images} />
+            </div>
+          )}
+
+          {/* Informações principais */}
+          <div className={styles.details}>
+            <p className={styles.condition}>
+              {data.condition === 'new' ? 'Novo' : 'Usado'} | +{data.sold_quantity} vendidos
+            </p>
+            <h1 className={styles.title}>{data.title}</h1>
+
+            <p className={styles.seller}>Por {data.seller || 'OCEANGREEN ARGENTINA'}</p>
+
+            <div className={styles.priceBlock}>
+              <h2 className={styles.price}>
+                {new Intl.NumberFormat('es-AR', {
+                  style: 'currency',
+                  currency: data.price.currency,
+                  maximumFractionDigits: 0,
+                }).format(data.price.amount)}
+              </h2>
+
+              {data.free_shipping && <p className={styles.freeShipping}>Envío gratis</p>}
+
+              {data.attributes?.some((a: any) => a.name === 'Color') && (
+                <p className={styles.color}>
+                  Color:{' '}
+                  <span className={styles.colorValue}>
+                    {data.attributes.find((a: any) => a.name === 'Color')?.value_name}
+                  </span>
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Descrição */}
+        <div className={styles.descriptionSection}>
+          <h3>Descripción</h3>
+          <p>{data.description || 'Sin descripción disponible.'}</p>
+        </div>
+      </div>
     </div>
   )
 }
