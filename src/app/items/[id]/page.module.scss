@@ -90,6 +90,7 @@
     font-weight: $font-weight-medium;
     color: $color-text-primary;
     margin-bottom: $space-xxs;
+    margin-top: 1rem;
 
     @include respond-below(md) {
       font-size: $font-size-4xl;
@@ -106,12 +107,14 @@
     color: $color-success;
     font-weight: $font-weight-semibold;
     margin-bottom: $space-sm;
+    margin-top: 2rem;
   }
 }
 
 .color {
   font-size: $font-size-sm;
   color: $color-text-primary;
+  margin-top: 2rem;
 }
 
 .colorValue {
@@ -120,21 +123,24 @@
 
 .descriptionSection {
   background: $color-bg-white;
-  padding: $space-6xl;
   border-top: 1px solid $color-shadow;
-  margin-top: 0;
+  padding-top: 2rem;
+  margin-top: 1rem;
   border-radius: 0 0 $space-xxs $space-xxs;
 
   h3 {
-    font-size: $font-size-xl;
-    margin-bottom: $space-lg;
+    font-size: heading(h4, size);
+    font-weight: heading(h4, weight);
+    line-height: heading(h4, line-height);
     color: $color-text-primary;
+    margin-bottom: space(sm);
   }
 
   p {
     color: $color-text-secondary;
     line-height: $line-height-lg;
     font-size: $font-size-sm;
+    padding: $space-3xl;
   }
 
   @include respond-below(md) {
