@@ -60,7 +60,9 @@ export const WelcomeMessage = () => {
         <div className={styles.content}>
           <header>
             <strong>Bem-vindo!!</strong>
-            <button onClick={handleClose}>X</button>
+            <button onClick={handleClose} data-testid="welcome-close">
+              X
+            </button>
           </header>
           <p>Utilize a barra de busca para encontrar produtos, marcas e muito mais!</p>
         </div>
