@@ -16,10 +16,14 @@ export function transformSearchResponse(results: any[], query: string, offset = 
         decimals: 0,
         regular_amount: r.original_price ?? r.price,
       },
+      type: r.sale_price.type,
       picture: r.thumbnail,
       condition: r.condition,
+      seller: r.seller?.nickname ?? '',
       free_shipping: r.shipping?.free_shipping ?? false,
       installments: r.installments?.quantity ? `${r.installments.quantity}x` : '',
+      installments_amount: r.installments?.amount ?? 0,
+      installments_rate: r.installments?.rate ?? 0,
     })),
   }
 }
