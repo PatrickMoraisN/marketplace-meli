@@ -1,15 +1,18 @@
 @use '@/shared/styles/tokens' as *;
 
 .itemsPage {
-  width: 100%;
-  min-height: 90vh;
-  background-color: $color-bg-light;
+  background-color: $color-bg-page;
+  min-height: 100vh;
+}
+
+.paperContent {
+  padding: 2rem;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 3rem 2.5rem;
 }
 
 .title {

@@ -4,7 +4,8 @@ import { ProductGallery } from '@/modules/Product/components/ProductGallery/Prod
 import { useProductItem } from '@/modules/Product/hooks/useProductItem'
 import { SearchHeader } from '@/shared/ui'
 import { Breadcrumb } from '@/shared/ui/Breadcrumb/Breadcrumb'
-import { useParams, useSearchParams } from 'next/navigation'
+import { Paper } from '@/shared/ui/Paper/Paper'
+import { useParams } from 'next/navigation'
 import styles from './page.module.scss'
 
 export default function ProductPage() {
@@ -12,7 +13,6 @@ export default function ProductPage() {
   const { data, isLoading, error } = useProductItem(id as string)
   const showInstallments =
     data?.installments && data?.installments_amount && data?.installments_rate === 0
-  const searchParams = useSearchParams()
 
   if (isLoading) {
     return (
@@ -46,66 +46,63 @@ export default function ProductPage() {
       thumbnail: src,
     })) ?? []
 
-  const breadcrumbItems =
-    data.category_path_from_root?.map((label: string) => ({
-      label,
-    })) || []
+  const breadcrumbItems = data.category_path_from_root?.map((label: string) => ({ label })) || []
 
   return (
     <div className={styles.page}>
       <SearchHeader />
-
       <div className={styles.container}>
         <Breadcrumb items={breadcrumbItems} className={styles.breadcrumb} />
-
-        <div className={styles.productSection}>
-          {images.length > 0 && (
-            <div className={styles.galleryWrapper}>
-              <ProductGallery images={images} />
-            </div>
-          )}
-
-          <div className={styles.details}>
-            <p className={styles.condition}>
-              {data.condition === 'new' ? 'Novo' : 'Usado'} | +{data.sold_quantity} vendidos
-            </p>
-            <h1 className={styles.title}>{data.title}</h1>
-
-            <p className={styles.seller}>Por {data.seller || 'OCEANGREEN ARGENTINA'}</p>
-
-            {showInstallments && (
-              <p>
-                Mesmo preço em {data.installments} de {data.installments_amount.toLocaleString()}{' '}
-                sem juros
-              </p>
+        <Paper className={styles.paper}>
+          <div className={styles.productSection}>
+            {images.length > 0 && (
+              <div className={styles.galleryWrapper}>
+                <ProductGallery images={images} />
+              </div>
             )}
-            <div className={styles.priceBlock}>
-              <h2 className={styles.price}>
-                {new Intl.NumberFormat('es-AR', {
-                  style: 'currency',
-                  currency: data.price.currency,
-                  maximumFractionDigits: 0,
-                }).format(data.price.amount)}
-              </h2>
 
-              {data.free_shipping && <p className={styles.freeShipping}>Envío gratis</p>}
+            <div className={styles.details}>
+              <p className={styles.condition}>
+                {data.condition === 'new' ? 'Novo' : 'Usado'} | +{data.sold_quantity} vendidos
+              </p>
+              <h1 className={styles.title}>{data.title}</h1>
+              <p className={styles.seller}>Por {data.seller || 'OCEANGREEN ARGENTINA'}</p>
 
-              {data.attributes?.some((a: any) => a.name === 'Color') && (
-                <p className={styles.color}>
-                  Color:{' '}
-                  <span className={styles.colorValue}>
-                    {data.attributes.find((a: any) => a.name === 'Color')?.value_name}
-                  </span>
-                </p>
-              )}
+              <div className={styles.priceBlock}>
+                <h2 className={styles.price}>
+                  {new Intl.NumberFormat('es-AR', {
+                    style: 'currency',
+                    currency: data.price.currency,
+                    maximumFractionDigits: 0,
+                  }).format(data.price.amount)}
+                </h2>
+
+                {showInstallments && (
+                  <p className={styles.installments}>
+                    Mesmo preço em {data.installments} sem juros de{' '}
+                    {data.installments_amount.toLocaleString()}
+                  </p>
+                )}
+
+                {data.free_shipping && <p className={styles.freeShipping}>Envío gratis</p>}
+
+                {data.attributes?.some((a: any) => a.name === 'Color') && (
+                  <p className={styles.color}>
+                    Color:{' '}
+                    <span className={styles.colorValue}>
+                      {data.attributes.find((a: any) => a.name === 'Color')?.value_name}
+                    </span>
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className={styles.descriptionSection}>
-          <h3>Descrição</h3>
-          <p>{data.description || 'Sem descrição disponível.'}</p>
-        </div>
+          <div className={styles.descriptionSection}>
+            <h3>Descrição</h3>
+            <p>{data.description || 'Sem descrição disponível.'}</p>
+          </div>
+        </Paper>
       </div>
     </div>
   )
