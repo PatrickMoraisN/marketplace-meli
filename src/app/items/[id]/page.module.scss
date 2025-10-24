@@ -6,32 +6,32 @@
 }
 
 .paper {
-  padding: 2rem;
+  padding: $space-6xl;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: $container-max;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: $space-3xl;
 }
 
 .breadcrumb {
-  margin-bottom: 1rem;
+  margin-bottom: $space-xl;
 }
 
 .productSection {
   display: grid;
   grid-template-columns: minmax(380px, 560px) 2fr;
   align-items: start;
-  gap: 2rem;
-  padding: 1rem;
-  border-radius: 4px;
+  gap: $space-6xl;
+  padding: $space-xl;
+  border-radius: $space-xxs;
   box-shadow: none;
 
   @include respond-below(md) {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem 1rem 2rem;
+    gap: $space-6xl;
+    padding: $space-3xl $space-xl $space-6xl;
   }
 }
 
@@ -60,89 +60,89 @@
 
 .condition {
   color: $color-text-tertiary;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: $font-size-sm;
+  margin-bottom: $space-sm;
 }
 
 .title {
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-semibold;
   color: $color-text-primary;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
+  margin-bottom: $space-sm;
+  line-height: $line-height-2xl;
 
   @include respond-below(md) {
-    font-size: 1.4rem;
+    font-size: $font-size-2xl;
   }
 }
 
 .seller {
   color: $color-text-tertiary;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
+  font-size: $font-size-md;
+  margin-bottom: $space-xl;
 }
 
 .priceBlock {
-  margin-bottom: 1.2rem;
+  margin-bottom: $space-2xl;
 }
 
 .price {
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: $font-size-6xl;
+  font-weight: $font-weight-medium;
   color: $color-text-primary;
-  margin-bottom: 0.25rem;
+  margin-bottom: $space-xxs;
 
   @include respond-below(md) {
-    font-size: 1.6rem;
+    font-size: $font-size-4xl;
   }
 }
 
 .installments {
-  font-size: 0.95rem;
+  font-size: $font-size-md;
   color: $color-success;
-  margin-bottom: 0.5rem;
+  margin-bottom: $space-sm;
 }
 
 .freeShipping {
   color: $color-success;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-sm;
 }
 
 .color {
-  font-size: 0.95rem;
+  font-size: $font-size-sm;
   color: $color-text-primary;
 }
 
 .colorValue {
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
 }
 
 .descriptionSection {
   background: $color-bg-white;
-  padding: 2rem;
+  padding: $space-6xl;
   border-top: 1px solid $color-shadow;
   margin-top: 0;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 $space-xxs $space-xxs;
 
   h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: $font-size-xl;
+    margin-bottom: $space-lg;
     color: $color-text-primary;
   }
 
   p {
     color: $color-text-secondary;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    line-height: $line-height-lg;
+    font-size: $font-size-sm;
   }
 
   @include respond-below(md) {
-    padding: 1.5rem 1rem;
+    padding: $space-3xl $space-xl;
   }
 }
 
 .centered {
   text-align: center;
-  padding: 4rem 0;
+  padding: $space-8xl 0;
 }

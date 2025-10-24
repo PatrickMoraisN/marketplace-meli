@@ -10,20 +10,20 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: $container-max;
   margin: 0 auto;
   padding: 3rem 2.5rem;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-medium;
   color: $color-text-tertiary;
   margin-bottom: 2rem;
 
   span {
     color: $color-link;
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
   }
 }
 
