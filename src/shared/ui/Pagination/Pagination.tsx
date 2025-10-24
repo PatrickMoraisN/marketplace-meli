@@ -1,6 +1,6 @@
 'use client'
 
-import clsx from 'clsx'
+import { cn } from '@/shared/utils/classNames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 import styles from './Pagination.module.scss'
@@ -76,7 +76,7 @@ export function Pagination({
         {showNavigationButtons && (
           <li>
             <button
-              className={clsx(styles.pageButton, styles.navButton, styles.prevButton, {
+              className={cn(styles.pageButton, styles.navButton, styles.prevButton, {
                 [styles.disabled]: !canGoPrev,
               })}
               onClick={() => handlePageChange(currentPage - 1)}
@@ -97,7 +97,7 @@ export function Pagination({
           ) : (
             <li key={page}>
               <button
-                className={clsx(styles.pageButton, {
+                className={cn(styles.pageButton, {
                   [styles.active]: page === currentPage,
                   [styles.disabled]: disabled,
                 })}
@@ -117,7 +117,7 @@ export function Pagination({
         {showNavigationButtons && (
           <li>
             <button
-              className={clsx(styles.pageButton, styles.navButton, styles.nextButton, {
+              className={cn(styles.pageButton, styles.navButton, styles.nextButton, {
                 [styles.disabled]: !canGoNext,
               })}
               onClick={() => handlePageChange(currentPage + 1)}

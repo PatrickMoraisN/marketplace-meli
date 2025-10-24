@@ -13,6 +13,7 @@ export default function ProductPage() {
   const showInstallments =
     data?.installments && data?.installments_amount && data?.installments_rate === 0
 
+  console.log(JSON.stringify(data?.installments, null, 2))
   if (isLoading) {
     return (
       <div className={styles.centered}>
@@ -75,6 +76,12 @@ export default function ProductPage() {
 
             <p className={styles.seller}>Por {data.seller || 'OCEANGREEN ARGENTINA'}</p>
 
+            {showInstallments && (
+              <p>
+                Mesmo preço em {data.installments} de {data.installments_amount.toLocaleString()}{' '}
+                sem juros
+              </p>
+            )}
             <div className={styles.priceBlock}>
               <h2 className={styles.price}>
                 {new Intl.NumberFormat('es-AR', {

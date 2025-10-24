@@ -1,6 +1,6 @@
 'use client'
 
-import clsx from 'clsx'
+import { cn } from '@/shared/utils/classNames'
 import Image from 'next/image'
 import { useState } from 'react'
 import styles from './ProductGallery.module.scss'
@@ -23,7 +23,7 @@ export function ProductGallery({ images, className }: ProductGalleryProps) {
 
   if (!images?.length)
     return (
-      <div className={clsx(styles.gallery, styles.empty, className)}>
+      <div className={cn(styles.gallery, styles.empty, className)}>
         <p>Nenhuma imagem disponível</p>
       </div>
     )
@@ -33,8 +33,7 @@ export function ProductGallery({ images, className }: ProductGalleryProps) {
   const current = visible[selected]
 
   return (
-    <div className={clsx(styles.gallery, className)}>
-      {/* Thumbnails */}
+    <div className={cn(styles.gallery, className)}>
       <div className={styles.thumbnails}>
         {visible.map((img, index) => (
           <button
@@ -44,7 +43,7 @@ export function ProductGallery({ images, className }: ProductGalleryProps) {
               setSelected(index)
               setLoading(true)
             }}
-            className={clsx(styles.thumb, { [styles.active]: index === selected })}
+            className={cn(styles.thumb, { [styles.active]: index === selected })}
           >
             <Image src={img.thumbnail || img.src} alt="" fill className={styles.thumbImg} />
           </button>
@@ -63,7 +62,7 @@ export function ProductGallery({ images, className }: ProductGalleryProps) {
           alt={current.alt}
           fill
           priority
-          className={clsx(styles.mainImage, { [styles.loading]: loading })}
+          className={cn(styles.mainImage, { [styles.loading]: loading })}
           onLoad={() => setLoading(false)}
         />
         <div className={styles.badge}>
