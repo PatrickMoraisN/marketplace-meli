@@ -1,4 +1,4 @@
-@use './spacing' as *;
-@use './variables' as *;
-@use './typography' as *;
-@use './responsive' as *;
+@forward './spacing';
+@forward './variables';
+@forward './typography';
+@forward './responsive';
