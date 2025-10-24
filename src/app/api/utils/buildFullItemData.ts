@@ -18,11 +18,13 @@ export function buildFullItemData(item: any, description: any, category: any) {
       installments_rate: item.installments?.rate ?? 0,
       description: description.plain_text ?? '',
       attributes:
-        item.attributes?.map((attr: any) => ({
-          id: attr.id,
-          name: attr.name,
-          value_name: attr.value_name,
-        })) ?? [],
+        item.attributes
+          ?.map((attr: any) => ({
+            id: attr.id,
+            name: attr.name,
+            value_name: attr.value_name,
+          }))
+          .slice(0, 8) ?? [],
       category_path_from_root: category?.path_from_root?.map((c: any) => c.name) ?? [],
     },
   }
