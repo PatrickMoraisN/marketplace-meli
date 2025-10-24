@@ -1,7 +1,12 @@
-import { SearchDataDTO } from '@/app/api/types/dto'
+import { SearchDataDTO, SearchResultItemMockDTO } from '@/app/api/types/dto'
+import { PAGINATION_CONFIG } from '@/shared/config/pagination'
 
-export function transformSearchResponse(results: any[], query: string, offset = 0): SearchDataDTO {
-  const ITEMS_PER_PAGE = 10
+export function transformSearchResponse(
+  results: SearchResultItemMockDTO[],
+  query: string,
+  offset = 0
+): SearchDataDTO {
+  const ITEMS_PER_PAGE = PAGINATION_CONFIG.searchItems.itemsPerPage
   const filtered = results.filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
 
   return {

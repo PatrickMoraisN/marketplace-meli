@@ -11,10 +11,10 @@ export function buildFallbackItem(id: string) {
       id: found.id,
       title: found.title,
       price: {
-        currency: found.currency_id || found.price?.currency_id || 'BRL',
-        amount: found.price?.amount || found.price || 0,
+        currency: found.currency_id || 'BRL',
+        amount: found.price || 0,
         decimals: 0,
-        regular_amount: found.original_price || found.price?.regular_amount || null,
+        regular_amount: found.original_price || null,
       },
       pictures: found.thumbnail
         ? [found.thumbnail]

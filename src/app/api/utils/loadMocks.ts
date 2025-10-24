@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
+import { SearchResultItemMockDTO } from '../types/dto'
 
-export function loadAllMockResults(): any[] {
+export function loadAllMockResults(): SearchResultItemMockDTO[] {
   const mocksBasePath = path.join(process.cwd(), 'src/app/api/mocks')
 
   const categories = fs.readdirSync(mocksBasePath)
