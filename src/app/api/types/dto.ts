@@ -70,3 +70,33 @@ export interface SearchDataDTO {
 export interface SearchResponseDTO {
   data: SearchDataDTO
 }
+
+export interface ProductItemDTO {
+  id: string
+  title: string
+  price: {
+    currency: string
+    amount: number
+    decimals: number
+    regular_amount: number | null
+  }
+  pictures: string[]
+  condition: string
+  free_shipping: boolean
+  sold_quantity: number
+  installments: string
+  installments_amount: number
+  installments_rate: number
+  description: string
+  seller?: string
+  attributes: Array<{
+    id: string
+    name: string
+    value_name: string
+  }>
+  category_path_from_root: string[]
+}
+
+export interface ProductResponseDTO {
+  item: ProductItemDTO
+}

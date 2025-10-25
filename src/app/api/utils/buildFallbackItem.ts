@@ -1,4 +1,6 @@
-export function buildFallbackItem(id: string, allResults: any[]) {
+import { ProductResponseDTO } from '../types/dto'
+
+export function buildFallbackItem(id: string, allResults: any[]): ProductResponseDTO | null {
   if (!allResults || allResults.length === 0) return null
 
   const found = allResults.find((item: any) => item.id === id)

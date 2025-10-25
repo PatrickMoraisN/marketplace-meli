@@ -1,4 +1,6 @@
-export function buildFullItemData(item: any, description: any, category: any) {
+import { ProductResponseDTO } from '../types/dto'
+
+export function buildFullItemData(item: any, description: any, category: any): ProductResponseDTO {
   return {
     item: {
       id: item.id,
@@ -16,7 +18,7 @@ export function buildFullItemData(item: any, description: any, category: any) {
       installments: item.installments?.quantity ? `${item.installments.quantity}x` : '',
       installments_amount: item.installments?.amount ?? 0,
       installments_rate: item.installments?.rate ?? 0,
-      description: description.plain_text ?? '',
+      description: description?.plain_text ?? '',
       attributes:
         item.attributes
           ?.map((attr: any) => ({
