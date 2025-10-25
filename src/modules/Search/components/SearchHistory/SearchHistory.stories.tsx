@@ -25,6 +25,9 @@ const mockHistory = [
 export const Default: Story = {
   args: {
     history: mockHistory,
+    onSelect: (term: string) => {
+      console.log(`Selected term: ${term}`)
+    },
   },
   decorators: [
     (Story) => (
@@ -38,6 +41,9 @@ export const Default: Story = {
 export const SingleItem: Story = {
   args: {
     history: [{ term: 'Nintendo Switch', timestamp: Date.now() - 1000 * 60 * 2 }],
+    onSelect: (term: string) => {
+      console.log(`Selected term: ${term}`)
+    },
   },
   decorators: [
     (Story) => (
@@ -60,6 +66,9 @@ export const LongTerms: Story = {
         timestamp: Date.now() - 1000 * 60 * 60 * 2,
       },
     ],
+    onSelect: (term: string) => {
+      console.log(`Selected term: ${term}`)
+    },
   },
   decorators: [
     (Story) => (
