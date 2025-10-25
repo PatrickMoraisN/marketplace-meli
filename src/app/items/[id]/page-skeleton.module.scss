@@ -1,75 +1,80 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.breadcrumb {
+  margin-bottom: 10rem;
+}
+
+.paper {
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.productSection {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
 .gallerySkeleton {
   display: flex;
   flex-direction: column;
-  gap: space(lg);
-  flex: 1;
+  gap: 1rem;
 
   .thumbnailRow {
     display: flex;
-    gap: space(md);
-    flex-wrap: wrap;
-  }
-
-  @include respond-below(sm) {
-    align-items: center;
-
-    .thumbnailRow {
-      justify-content: center;
-    }
+    gap: 0.8rem;
   }
 }
 
 .detailsSkeleton {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: space(md);
-  padding: 0 space(3xl);
-
-  @include respond-below(md) {
-    padding: 0;
-    align-items: center;
-    text-align: center;
-  }
+  gap: 1.2rem;
 }
 
-.descriptionSkeleton {
-  margin-top: space(6xl);
+.titleBlock,
+.priceBlock,
+.shippingBlock,
+.actionsBlock,
+.sellerBlock {
   display: flex;
   flex-direction: column;
-  gap: space(sm);
-
-  @include respond-below(sm) {
-    margin-top: space(4xl);
-  }
+  gap: 0.6rem;
 }
 
+.actionsBlock {
+  display: flex;
+  gap: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+}
+
+.descriptionSkeleton,
 .characteristicsSkeleton {
-  margin-top: space(6xl);
   display: flex;
   flex-direction: column;
-  gap: space(lg);
+  gap: 1rem;
+}
 
-  .characteristicsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: space(2xl) space(3xl);
-  }
-
-  .characteristicsItem {
-    background: $color-bg-white;
-    border-radius: space(md);
-    padding: space(2xl) space(3xl);
-  }
-
-  @include respond-below(sm) {
-    .characteristicsGrid {
-      grid-template-columns: 1fr;
-      gap: space(lg);
-    }
-
-    .characteristicsItem {
-      padding: space(xl) space(2xl);
-    }
-  }
+.characteristicsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
 }
