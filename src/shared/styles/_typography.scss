@@ -30,68 +30,47 @@ $line-height-3xl: 1.2;
 $line-height-4xl: 1.2;
 $line-height-5xl: 1.1;
 
-// Headings map
-$headings: (
-  h1: (
-    $font-size-5xl,
-    $font-weight-regular,
-    $line-height-5xl,
-  ),
-  h2: (
-    $font-size-4xl,
-    $font-weight-regular,
-    $line-height-4xl,
-  ),
-  h3: (
-    $font-size-3xl,
-    $font-weight-regular,
-    $line-height-3xl,
-  ),
-  h4: (
-    $font-size-2xl,
-    $font-weight-semibold,
-    $line-height-2xl,
-  ),
-  h5: (
-    $font-size-xl,
-    $font-weight-light,
-    $line-height-xl,
-  ),
-  h6: (
-    $font-size-lg,
-    $font-weight-semibold,
-    $line-height-lg,
-  ),
-);
+// Heading variables - H1
+$heading-h1-size: $font-size-5xl;
+$heading-h1-weight: $font-weight-regular;
+$heading-h1-line-height: $line-height-5xl;
 
-// Body variants
-$body-text: (
-  base: (
-    $font-size-md,
-    $font-weight-regular,
-    $line-height-md,
-  ),
-  small: (
-    $font-size-sm,
-    $font-weight-regular,
-    $line-height-sm,
-  ),
-  tiny: (
-    $font-size-xs,
-    $font-weight-regular,
-    $line-height-xs,
-  ),
-);
+// Heading variables - H2
+$heading-h2-size: $font-size-4xl;
+$heading-h2-weight: $font-weight-regular;
+$heading-h2-line-height: $line-height-4xl;
 
-// Utility function to get a heading style
-@function heading($level, $prop: size) {
-  $config: map-get($headings, $level);
+// Heading variables - H3
+$heading-h3-size: $font-size-3xl;
+$heading-h3-weight: $font-weight-regular;
+$heading-h3-line-height: $line-height-3xl;
 
-  @if $prop == size {
-    @return nth($config, 1);
-  } @else if $prop == weight {
-    @return nth($config, 2);
-  } @else if $prop == line-height {
-    @return nth($config, 3);
-  }
-}
+// Heading variables - H4
+$heading-h4-size: $font-size-2xl;
+$heading-h4-weight: $font-weight-semibold;
+$heading-h4-line-height: $line-height-2xl;
+
+// Heading variables - H5
+$heading-h5-size: $font-size-xl;
+$heading-h5-weight: $font-weight-light;
+$heading-h5-line-height: $line-height-xl;
+
+// Heading variables - H6
+$heading-h6-size: $font-size-lg;
+$heading-h6-weight: $font-weight-semibold;
+$heading-h6-line-height: $line-height-lg;
+
+// Body text variables - Base
+$body-base-size: $font-size-md;
+$body-base-weight: $font-weight-regular;
+$body-base-line-height: $line-height-md;
+
+// Body text variables - Small
+$body-small-size: $font-size-sm;
+$body-small-weight: $font-weight-regular;
+$body-small-line-height: $line-height-sm;
+
+// Body text variables - Tiny
+$body-tiny-size: $font-size-xs;
+$body-tiny-weight: $font-weight-regular;
+$body-tiny-line-height: $line-height-xs;

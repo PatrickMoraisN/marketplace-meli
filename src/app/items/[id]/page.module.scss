@@ -129,11 +129,11 @@
   border-radius: 0 0 $space-xxs $space-xxs;
 
   h3 {
-    font-size: heading(h4, size);
-    font-weight: heading(h4, weight);
-    line-height: heading(h4, line-height);
+    font-size: $heading-h4-size;
+    font-weight: $heading-h4-weight;
+    line-height: $heading-h4-line-height;
     color: $color-text-primary;
-    margin-bottom: space(sm);
+    margin-bottom: $space-sm;
   }
 
   p {
@@ -154,21 +154,21 @@
 }
 
 .characteristicsSection {
-  margin-top: space(6xl);
-  padding-top: space(4xl);
+  margin-top: $space-6xl;
+  padding-top: $space-4xl;
   display: flex;
   flex-direction: column;
-  gap: space(3xl);
+  gap: $space-3xl;
 
   h3 {
-    font-size: heading(h4, size);
-    font-weight: heading(h4, weight);
-    line-height: heading(h4, line-height);
+    font-size: $heading-h4-size;
+    font-weight: $heading-h4-weight;
+    line-height: $heading-h4-line-height;
     color: $color-text-primary;
-    margin-bottom: space(sm);
+    margin-bottom: $space-sm;
 
     @include respond-below(sm) {
-      font-size: heading(h5, size);
+      font-size: $heading-h5-size;
       text-align: center;
     }
   }
@@ -179,63 +179,63 @@
     margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: space(2xl) space(3xl);
+    gap: $space-2xl $space-3xl;
 
     @include respond-below(md) {
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: space(xl) space(2xl);
+      gap: $space-xl $space-2xl;
     }
 
     @include respond-below(sm) {
       grid-template-columns: 1fr;
-      gap: space(lg);
+      gap: $space-lg;
     }
   }
 
   li {
     display: flex;
     flex-direction: column;
-    font-size: nth(map-get($body-text, base), 1);
-    font-weight: nth(map-get($body-text, base), 2);
-    line-height: nth(map-get($body-text, base), 3);
+    font-size: $body-base-size;
+    font-weight: $body-base-weight;
+    line-height: $body-base-line-height;
     color: $color-text-tertiary;
     background: $color-bg-white;
-    border-radius: space(md);
-    padding: space(2xl) space(3xl);
+    border-radius: $space-md;
+    padding: $space-2xl $space-3xl;
 
     @include respond-below(sm) {
-      font-size: nth(map-get($body-text, small), 1);
-      padding: space(xl) space(2xl);
+      font-size: $body-small-size;
+      padding: $space-xl $space-2xl;
     }
   }
 
   @include respond-between(md, xl) {
-    gap: space(4xl);
+    gap: $space-4xl;
 
     h3 {
-      font-size: heading(h3, size);
+      font-size: $heading-h3-size;
     }
 
     li {
-      font-size: nth(map-get($body-text, base), 1);
-      padding: space(3xl) space(4xl);
+      font-size: $body-base-size;
+      padding: $space-3xl $space-4xl;
     }
   }
 
   @include respond-to(xxl) {
-    margin-top: space(8xl);
+    margin-top: $space-8xl;
 
     h3 {
-      font-size: heading(h3, size);
+      font-size: $heading-h3-size;
     }
 
     ul {
-      gap: space(3xl) space(4xl);
+      gap: $space-3xl $space-4xl;
     }
 
     li {
-      font-size: nth(map-get($body-text, base), 1);
-      padding: space(4xl) space(5xl);
+      font-size: $body-base-size;
+      padding: $space-4xl $space-5xl;
     }
   }
 }

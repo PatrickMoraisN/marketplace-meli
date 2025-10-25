@@ -16,21 +16,3 @@ $space-8xl: 64px;
 // Layout container widths
 $container-max: 1200px;
 $container-content: 1018px;
-
-@function space($key) {
-  @return map-get(
-    (
-      xxs: $space-xxs,
-      xs: $space-xs,
-      sm: $space-sm,
-      md: $space-md,
-      lg: $space-lg,
-      xl: $space-xl,
-      2xl: $space-2xl,
-      3xl: $space-3xl,
-      4xl: $space-4xl,
-      5xl: $space-5xl,
-    ),
-    $key
-  );
-}
