@@ -1,11 +1,12 @@
 import fs from 'fs'
 import { NextRequest, NextResponse } from 'next/server'
 import path from 'path'
+import { SearchResultItemMockDTO } from '../../types/dto'
 import { buildFallbackItem } from '../../utils/buildFallbackItem'
 import { buildFullItemData } from '../../utils/buildFullItemData'
 import { loadAllMockResults } from '../../utils/loadMocks'
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 
   try {
@@ -43,7 +44,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const category = fs.existsSync(catPath) ? JSON.parse(fs.readFileSync(catPath, 'utf-8')) : null
 
     const allSearchResults = loadAllMockResults()
-    const fromSearch = allSearchResults.find((r: any) => r.id === id)
+    const fromSearch = allSearchResults.find((r: SearchResultItemMockDTO) => r.id === id)
 
     if (fromSearch) {
       const searchInstallments = fromSearch.installments
