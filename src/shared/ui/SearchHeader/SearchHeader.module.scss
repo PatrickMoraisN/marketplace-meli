@@ -17,7 +17,7 @@
   width: 100%;
   max-width: $container-max;
   gap: $space-7xl;
-  padding: 0 $space-3xl;
+  padding: 15px $space-3xl;
 
   @include respond-below(sm) {
     flex-direction: column;
