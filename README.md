@@ -19,36 +19,36 @@ A marketplace application built with Next.js, featuring product search, detailed
 
 This project is built with a modern frontend stack focused on performance, type safety, and developer experience:
 
-### Core Framework
+### Core
 
-- **Next.js 15.5** - React framework with App Router, Server Components, and Turbopack
-- **React 19.1** - Latest React with improved server-side rendering capabilities
-- **TypeScript** - Type-safe development experience
+- **Next.js 15.5** (App Router, Server Components, Turbopack)
+- **React 19.1**
+- **TypeScript 5**
 
-### State & Data Fetching
+### Data & State
 
-- **TanStack Query** - Server state management with caching and optimistic updates
-- **Axios** - HTTP client with interceptors and custom adapters
+- **TanStack Query** — server-state caching and hydration
+- **Axios** — custom adapters and interceptors
 
 ### Styling
 
-- **Sass** - CSS preprocessor with modules and scoped styles
-- **clsx** - Utility for constructing className strings conditionally
+- **Sass Modules** — scoped styling
+- **clsx** — conditional class management
 
-### Validation & Utilities
+### Utilities
 
-- **Zod 4** - TypeScript-first schema validation
-- **Day.js** - Lightweight date manipulation library
+- **Zod** — schema validation
+- **Day.js** — date utilities
 
-### Testing & Quality
+### Testing
 
-- **Vitest with coverage-v8** - Fast unit test framework with native ESM support
-- **Testing Library** - React component testing utilities
+- **Vitest + Testing Library** — unit & component testing
+- **V8 coverage** — coverage reporting
 
-### Development Tools
+### Tooling
 
-- **Storybook 9** - Component development and documentation
-- **ESLint** - Code linting with Next.js configuration
+- **Storybook 9** — isolated UI development
+- **ESLint** — code quality and linting
 
 ## Architecture
 
