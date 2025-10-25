@@ -12,10 +12,11 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   const { id } = await params
 
   try {
+    const allSearchResults = loadAllMockResults()
     const filePaths = findItemFiles(id)
 
     if (!filePaths) {
-      const fallback = buildFallbackItem(id)
+      const fallback = buildFallbackItem(id, allSearchResults)
       if (!fallback) return errorResponse('Item not found', 404)
       return successResponse(fallback)
     }
@@ -28,7 +29,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
       return errorResponse('Failed to load item data', 500)
     }
 
-    const allSearchResults = loadAllMockResults()
     const fromSearch = allSearchResults.find((r: SearchResultItemMockDTO) => r.id === id)
 
     const mergedItem = mergeItemWithSearchData(item, fromSearch)

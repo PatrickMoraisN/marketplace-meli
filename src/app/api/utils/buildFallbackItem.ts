@@ -1,7 +1,4 @@
-import { loadAllMockResults } from './loadMocks'
-
-export function buildFallbackItem(id: string) {
-  const allResults = loadAllMockResults()
+export function buildFallbackItem(id: string, allResults: any[]) {
   if (!allResults || allResults.length === 0) return null
 
   const found = allResults.find((item: any) => item.id === id)
