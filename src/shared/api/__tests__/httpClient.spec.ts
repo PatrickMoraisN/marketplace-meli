@@ -31,9 +31,9 @@ describe('httpClient', () => {
     const fakeClient = { request: vi.fn() }
     ;(HttpClientFactory.createAxiosClient as any).mockReturnValue(fakeClient)
 
-    const module = await import('../httpClient')
-    const moduleAgain = await import('../httpClient')
+    const firstImport = await import('../httpClient')
+    const secondImport = await import('../httpClient')
 
-    expect(module.httpClient).toBe(moduleAgain.httpClient)
+    expect(firstImport.httpClient).toBe(secondImport.httpClient)
   })
 })
