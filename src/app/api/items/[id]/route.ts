@@ -1,84 +1,41 @@
-import fs from 'fs'
-import { NextRequest, NextResponse } from 'next/server'
-import path from 'path'
+import { NextRequest } from 'next/server'
 import { SearchResultItemMockDTO } from '../../types/dto'
 import { buildFallbackItem } from '../../utils/buildFallbackItem'
 import { buildFullItemData } from '../../utils/buildFullItemData'
 import { loadAllMockResults } from '../../utils/loadMocks'
+import { findItemFiles } from '../../utils/findItemFiles'
+import { loadJsonFile } from '../../utils/loadJsonFile'
+import { mergeItemWithSearchData } from '../../utils/mergeItemWithSearchData'
+import { errorResponse, successResponse } from '../../utils/apiResponses'
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 
   try {
-    const mocksDir = path.join(process.cwd(), 'src', 'app', 'api', 'mocks')
-    const categories = fs.readdirSync(mocksDir)
+    const filePaths = findItemFiles(id)
 
-    let itemPath = ''
-    let descPath = ''
-    let catPath = ''
-
-    for (const categoryFolder of categories) {
-      const dirPath = path.join(mocksDir, categoryFolder)
-      const itemFile = path.join(dirPath, `item-${id}.json`)
-      const descFile = path.join(dirPath, `item-${id}-description.json`)
-      const catFile = path.join(dirPath, `item-${id}-category.json`)
-
-      if (fs.existsSync(itemFile)) {
-        itemPath = itemFile
-        descPath = descFile
-        catPath = catFile
-        break
-      }
-    }
-
-    if (!itemPath) {
+    if (!filePaths) {
       const fallback = buildFallbackItem(id)
-      if (!fallback) return NextResponse.json({ error: 'Item not found' }, { status: 404 })
-      return NextResponse.json(fallback)
+      if (!fallback) return errorResponse('Item not found', 404)
+      return successResponse(fallback)
     }
 
-    const item = JSON.parse(fs.readFileSync(itemPath, 'utf-8'))
-    const description = fs.existsSync(descPath)
-      ? JSON.parse(fs.readFileSync(descPath, 'utf-8'))
-      : null
-    const category = fs.existsSync(catPath) ? JSON.parse(fs.readFileSync(catPath, 'utf-8')) : null
+    const item = loadJsonFile(filePaths.itemPath)
+    const description = loadJsonFile(filePaths.descPath)
+    const category = loadJsonFile(filePaths.catPath)
+
+    if (!item) {
+      return errorResponse('Failed to load item data', 500)
+    }
 
     const allSearchResults = loadAllMockResults()
     const fromSearch = allSearchResults.find((r: SearchResultItemMockDTO) => r.id === id)
 
-    if (fromSearch) {
-      const searchInstallments = fromSearch.installments
+    const mergedItem = mergeItemWithSearchData(item, fromSearch)
+    const result = buildFullItemData(mergedItem, description, category)
 
-      if (searchInstallments && typeof searchInstallments === 'object') {
-        item.installments = {
-          quantity: searchInstallments.quantity ?? 0,
-          amount: searchInstallments.amount ?? 0,
-          rate: searchInstallments.rate ?? 0,
-          currency_id: searchInstallments.currency_id ?? 'ARS',
-        }
-      }
-
-      item.sold_quantity = fromSearch.sold_quantity ?? item.sold_quantity ?? 0
-
-      item.shipping = {
-        ...(item.shipping || {}),
-        ...(fromSearch.shipping || {}),
-      }
-
-      item.original_price = item.original_price ?? fromSearch.original_price ?? item.price
-
-      if (fromSearch.price) {
-        item.price = fromSearch.price
-      }
-      if (!item.condition && fromSearch.condition) {
-        item.condition = fromSearch.condition
-      }
-    }
-
-    const result = buildFullItemData(item, description, category)
-    return NextResponse.json(result)
+    return successResponse(result)
   } catch (error) {
-    console.error('[MOCK ITEM ERROR]', error)
-    return NextResponse.json({ error: 'Failed to load item' }, { status: 500 })
+    return errorResponse('Failed to load item', 500, error)
   }
 }

@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { loadAllMockResults } from '../utils/loadMocks'
 import { transformSearchResponse } from '../utils/transformSearchResponse'
+import { errorResponse, successResponse } from '../utils/apiResponses'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -8,15 +9,14 @@ export async function GET(req: NextRequest) {
   const offset = Number(searchParams.get('offset') || 0)
 
   if (!query) {
-    return NextResponse.json({ error: 'Missing search query' }, { status: 400 })
+    return errorResponse('Missing search query', 400)
   }
 
   try {
     const allResults = loadAllMockResults()
     const transformed = transformSearchResponse(allResults, query, offset)
-    return NextResponse.json({ data: transformed })
+    return successResponse({ data: transformed })
   } catch (error) {
-    console.error('[MOCK SEARCH ERROR]', error)
-    return NextResponse.json({ error: 'Failed to process mock search' }, { status: 500 })
+    return errorResponse('Failed to process mock search', 500, error)
   }
 }
