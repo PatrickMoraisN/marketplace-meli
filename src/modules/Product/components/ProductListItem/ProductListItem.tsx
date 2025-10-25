@@ -5,6 +5,7 @@ import { cn } from '@/shared/utils/classNames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import styles from './ProductListItem.module.scss'
 
 interface ProductListItemProps {
@@ -23,7 +24,15 @@ interface ProductListItemProps {
   type?: string
 }
 
-export function ProductListItem({
+export function ProductListItem(props: ProductListItemProps) {
+  return (
+    <Suspense fallback={null}>
+      <InnerProductListItem {...props} />
+    </Suspense>
+  )
+}
+
+function InnerProductListItem({
   id,
   title,
   picture,

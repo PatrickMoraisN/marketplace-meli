@@ -6,12 +6,12 @@ import { SearchHeader } from '@/shared/ui'
 import { Pagination } from '@/shared/ui/Pagination/Pagination'
 import { Paper } from '@/shared/ui/Paper/Paper'
 import { useSearchParams } from 'next/navigation'
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import { ProductList } from '../../modules/Product/components/ProductList/ProductList'
 import { ProductListPageSkeleton } from './page-skeleton'
 import styles from './page.module.scss'
 
-export default function ItemsPage() {
+function ItemsPageContent() {
   const searchParams = useSearchParams()
   const searchTerm = useMemo(
     () => decodeURIComponent(searchParams.get('search') || ''),
@@ -47,5 +47,13 @@ export default function ItemsPage() {
         )}
       </main>
     </>
+  )
+}
+
+export default function ItemsPage() {
+  return (
+    <Suspense fallback={<ProductListPageSkeleton />}>
+      <ItemsPageContent />
+    </Suspense>
   )
 }

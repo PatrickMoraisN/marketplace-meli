@@ -5,9 +5,10 @@ import { normalizeSearchQuery } from '@/modules/Search/utils/normalizeSearchQuer
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import styles from './SearchHeader.module.scss'
 
-export const SearchHeader = () => {
+function SearchHeaderContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const searchParam = searchParams.get('search')
@@ -33,5 +34,13 @@ export const SearchHeader = () => {
         </div>
       </div>
     </header>
+  )
+}
+
+export const SearchHeader = () => {
+  return (
+    <Suspense fallback={null}>
+      <SearchHeaderContent />
+    </Suspense>
   )
 }

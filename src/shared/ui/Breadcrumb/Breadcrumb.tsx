@@ -3,6 +3,7 @@
 import { cn } from '@/shared/utils/classNames'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import styles from './Breadcrumb.module.scss'
 
 interface BreadcrumbProps {
@@ -18,7 +19,15 @@ function BackToList({ url }: { url: string }) {
   )
 }
 
-export function Breadcrumb({ items, className }: BreadcrumbProps) {
+export function Breadcrumb(props: BreadcrumbProps) {
+  return (
+    <Suspense fallback={null}>
+      <InnerBreadcrumb {...props} />
+    </Suspense>
+  )
+}
+
+function InnerBreadcrumb({ items, className }: BreadcrumbProps) {
   const searchParams = useSearchParams()
   const search = searchParams.get('search')
 

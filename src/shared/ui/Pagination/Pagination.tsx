@@ -2,7 +2,7 @@
 
 import { cn } from '@/shared/utils/classNames'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import styles from './Pagination.module.scss'
 
 interface PaginationProps {
@@ -13,7 +13,15 @@ interface PaginationProps {
   disabled?: boolean
 }
 
-export function Pagination({
+export function Pagination(props: PaginationProps) {
+  return (
+    <Suspense fallback={null}>
+      <InnerPagination {...props} />
+    </Suspense>
+  )
+}
+
+function InnerPagination({
   totalPages,
   basePath,
   maxVisiblePages = 3,
@@ -22,28 +30,14 @@ export function Pagination({
 }: PaginationProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-
   const currentPage = Number(searchParams.get('page')) || 1
-
-  if (totalPages <= 0) return null
-
-  const handlePageChange = (page: number) => {
-    if (page < 1 || page > totalPages || disabled || page === currentPage) return
-
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('page', page.toString())
-
-    router.push(`${basePath}?${params.toString()}`)
-  }
 
   const renderPages = useMemo(() => {
     const pages: (number | string)[] = []
     const delta = Math.floor(maxVisiblePages / 2)
 
     if (totalPages <= maxVisiblePages + 2) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
-      }
+      for (let i = 1; i <= totalPages; i++) pages.push(i)
       return pages
     }
 
@@ -53,19 +47,23 @@ export function Pagination({
     pages.push(1)
 
     if (leftRange > 2) pages.push('...')
-
     for (let i = leftRange; i <= rightRange; i++) {
-      if (i !== 1 && i !== totalPages) {
-        pages.push(i)
-      }
+      if (i !== 1 && i !== totalPages) pages.push(i)
     }
-
     if (rightRange < totalPages - 1) pages.push('...')
-
     if (totalPages > 1) pages.push(totalPages)
 
     return pages
   }, [currentPage, totalPages, maxVisiblePages])
+
+  if (totalPages <= 0) return null
+
+  const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages || disabled || page === currentPage) return
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('page', page.toString())
+    router.push(`${basePath}?${params.toString()}`)
+  }
 
   const canGoPrev = currentPage > 1 && !disabled
   const canGoNext = currentPage < totalPages && !disabled
